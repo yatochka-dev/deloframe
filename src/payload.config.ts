@@ -10,6 +10,7 @@ import { Users } from '@/collections/Users'
 import { Media } from '@/collections/Media'
 import { CallMe } from '@/collections/CallMe'
 import { BaseSettings } from '@/globals/settings'
+import Parameters from "@/collections/Parameter";
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -22,7 +23,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, CallMe],
+  collections: [Users, Media, CallMe, Parameters],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

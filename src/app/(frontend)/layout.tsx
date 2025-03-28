@@ -6,10 +6,10 @@ import { getPayload } from 'payload'
 import config from '@payload-config'
 import { ThemeProvider } from '@/components/theme-provider.component'
 import { Tinos } from 'next/font/google'
-const tinos = Tinos({
-  subsets: ['cyrillic'],
-  weight: ['400', '700'],
-})
+// const tinos = Tinos({
+//   subsets: ['cyrillic'],
+//   weight: ['400', '700'],
+// })
 
 export const metadata = {
   description: 'A blank template using Payload in a Next.js app.',
@@ -25,7 +25,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
   })
 
   return (
-    <html lang="en" suppressHydrationWarning className={tinos.className}>
+    <html lang="en" suppressHydrationWarning >
       <body>
         <ThemeProvider
           attribute="class"

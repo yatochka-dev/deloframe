@@ -70,6 +70,7 @@ export interface Config {
     users: User;
     media: Media;
     'call-me': CallMe;
+    parameters: Parameter;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -79,6 +80,7 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     'call-me': CallMeSelect<false> | CallMeSelect<true>;
+    parameters: ParametersSelect<false> | ParametersSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -168,6 +170,62 @@ export interface CallMe {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "parameters".
+ */
+export interface Parameter {
+  id: number;
+  name: string;
+  cat:
+    | 'foundation'
+    | 'wall-structure'
+    | 'floor-ceiling-structure'
+    | 'roof-framing'
+    | 'roofing'
+    | 'interior-finishing'
+    | 'windows'
+    | 'utilities';
+  pricePer: number;
+  weight: number;
+  heatLoss: number;
+  matrices: {
+    amount: {
+      oneStory: string;
+      twoStory: string;
+      oneStoryPF: string;
+      twoStoryPF: string;
+    };
+    price: {
+      oneStory: string;
+      twoStory: string;
+      oneStoryPF: string;
+      twoStoryPF: string;
+    };
+    weight: {
+      oneStory: string;
+      twoStory: string;
+      oneStoryPF: string;
+      twoStoryPF: string;
+    };
+    heatLoss: {
+      below9deg: {
+        oneStory: string;
+        twoStory: string;
+        oneStoryPF: string;
+        twoStoryPF: string;
+      };
+      below39deg: {
+        oneStory: string;
+        twoStory: string;
+        oneStoryPF: string;
+        twoStoryPF: string;
+      };
+    };
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -184,6 +242,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'call-me';
         value: number | CallMe;
+      } | null)
+    | ({
+        relationTo: 'parameters';
+        value: number | Parameter;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -267,6 +329,67 @@ export interface MediaSelect<T extends boolean = true> {
  */
 export interface CallMeSelect<T extends boolean = true> {
   phone?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "parameters_select".
+ */
+export interface ParametersSelect<T extends boolean = true> {
+  name?: T;
+  cat?: T;
+  pricePer?: T;
+  weight?: T;
+  heatLoss?: T;
+  matrices?:
+    | T
+    | {
+        amount?:
+          | T
+          | {
+              oneStory?: T;
+              twoStory?: T;
+              oneStoryPF?: T;
+              twoStoryPF?: T;
+            };
+        price?:
+          | T
+          | {
+              oneStory?: T;
+              twoStory?: T;
+              oneStoryPF?: T;
+              twoStoryPF?: T;
+            };
+        weight?:
+          | T
+          | {
+              oneStory?: T;
+              twoStory?: T;
+              oneStoryPF?: T;
+              twoStoryPF?: T;
+            };
+        heatLoss?:
+          | T
+          | {
+              below9deg?:
+                | T
+                | {
+                    oneStory?: T;
+                    twoStory?: T;
+                    oneStoryPF?: T;
+                    twoStoryPF?: T;
+                  };
+              below39deg?:
+                | T
+                | {
+                    oneStory?: T;
+                    twoStory?: T;
+                    oneStoryPF?: T;
+                    twoStoryPF?: T;
+                  };
+            };
+      };
   updatedAt?: T;
   createdAt?: T;
 }
