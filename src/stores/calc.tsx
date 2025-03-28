@@ -10,7 +10,15 @@ interface ICalcStore {
     width: number
     length: number
   },
-  params: Partial<Record<ParameterCat, ParameterData[]>>
+  customConfig: boolean,
+  switchConfig: () => void,
+  params: Partial<Record<ParameterCat, {
+    items: {
+        id: ParameterData['id'],
+        customAmount?: number,
+      }[]
+
+  }>>
 
   updateInitialInput: (input: Partial<ICalcStore['initialInput']>) => void
 }
@@ -21,15 +29,37 @@ const useCalcStore = create<ICalcStore>()((set) => ({
     width: 10,
     length: 8,
   },
+  customConfig: false,
+  switchConfig: () => {
+    set((state) => ({
+      customConfig: !state.customConfig,
+    }))
+  },
 params: {
-  roofing: [],
-  foundation: [],
-  'wall-structure': [],
-  'floor-ceiling-structure': [],
-  'roof-framing': [],
-  'interior-finishing': [],
-  windows: [],
-  utilities: [],
+  roofing: {
+    items: []
+  },
+  foundation: {
+    items: []
+  },
+  'wall-structure': {
+    items: []
+  },
+  'floor-ceiling-structure': {
+    items: []
+  },
+  'roof-framing': {
+    items: []
+  },
+  'interior-finishing': {
+    items: []
+  },
+  windows: {
+    items: []
+  },
+  utilities: {
+    items: []
+  },
 },
   updateInitialInput: (input) =>
     set((state) => ({

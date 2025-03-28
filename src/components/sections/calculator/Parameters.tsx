@@ -1,8 +1,11 @@
+"use client";
 import {ParameterCat, ParameterData} from '@/collections/Parameter';
 import React from 'react';
 import {Checkbox} from "@/components/ui/checkbox";
 import { Input } from '@/components/ui/input';
 import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from '@/components/ui/accordion';
+import {Button} from "@/components/ui/button";
+import useCalcStore from "@/stores/calc";
 
 interface ParametersProps {
     params: Record<ParameterCat, ParameterData[]>
@@ -14,9 +17,16 @@ const Parameters = (
     }: ParametersProps
 ) => {
     const keys = Object.keys(params) as ParameterCat[];
-
+const configMode = useCalcStore();
     return (
         <div>
+            <div>
+                <Button onClick={configMode.switchConfig}>
+                    {configMode.customConfig ? "Выключить кастомный ввод" : "Включить кастомный ввод"}
+                </Button>
+
+            </div>
+
             <Accordion type={"multiple"}>
 
                 {/*</AccordionItem>*/}
