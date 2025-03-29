@@ -16,8 +16,8 @@ export default async function main() {
     payload.create({
       collection: "parameters",
        data: {
-        cat: c.value,
-         name:`${c}-${c.label}`,
+         category: c.value,
+         name:`${c.value}-${c.label}`,
          isUtil: houseOptions.includes(c),
          // random number from 0 to .2
          heatLoss: Math.random() * .2,
@@ -57,9 +57,6 @@ export default async function main() {
             },
           }
          }
-
-
-
        }
     })
   })

@@ -16,6 +16,8 @@ export const metadata = {
   title: 'Payload Blank Template',
 }
 
+// @todo use shadcn sidebar instead of header
+
 export default async function RootLayout(props: { children: React.ReactNode }) {
   const { children } = props
   const payload = await getPayload({ config })

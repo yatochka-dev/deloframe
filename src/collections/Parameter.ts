@@ -36,6 +36,8 @@ export const houseOptions = [
     { label: "Кондиционирование", value: "air_conditioning" },
     { label: "Септик", value: "septic" },
 ] as const;
+export const houseComponentsValues = [...houseComponents.map(o => o.value)] as const
+export const houseOptionsValues = [...houseOptions.map(o => o.value)] as const
 
 export const Parameters: CollectionConfig = {
     slug: 'parameters',
@@ -56,7 +58,7 @@ export const Parameters: CollectionConfig = {
             required: true,
         },
         {
-            name: 'cat',
+            name: 'category',
             label: 'Category',
             type: 'select',
             options: [

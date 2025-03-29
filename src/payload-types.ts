@@ -175,7 +175,7 @@ export interface CallMe {
 export interface Parameter {
   id: number;
   name: string;
-  cat:
+  category:
     | 'exterior_finish'
     | 'interior_gypsum_finish'
     | 'windows'
@@ -353,7 +353,7 @@ export interface CallMeSelect<T extends boolean = true> {
  */
 export interface ParametersSelect<T extends boolean = true> {
   name?: T;
-  cat?: T;
+  category?: T;
   isUtil?: T;
   pricePer?: T;
   weight?: T;
