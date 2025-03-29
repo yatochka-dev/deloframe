@@ -5,25 +5,37 @@ import type { Parameter  } from "@/payload-types";
 
 export type ParameterData = Parameter;
 export type ParameterCat =
-    | 'foundation'
-    | 'wall-structure'
-    | 'floor-ceiling-structure'
-    | 'roof-framing'
-    | 'roofing'
-    | 'interior-finishing'
-    | 'windows'
-    | 'utilities';
+    (typeof houseComponents)[number]["value"] | (typeof houseComponents)[number]["value"];
 
-const parameterCategories = [
-    'foundation',
-    'wall-structure',
-    'floor-ceiling-structure',
-    'roof-framing',
-    'roofing',
-    'interior-finishing',
-    'windows',
-    'utilities'
-]
+
+
+export const houseComponents = [
+    { label: "Фундамент", value: "foundation" },
+    { label: "Внешние стены", value: "external_walls" },
+    { label: "Внутренние стены", value: "internal_walls" },
+    { label: "Перегородки", value: "partitions" },
+    { label: "Междуэтажные перекрытие", value: "interfloor_slab" },
+    { label: "Утеплённое перекрытие чердака", value: "insulated_attic_slab" },
+    { label: "Утепленная стропильная система", value: "insulated_rafter_system" },
+    { label: "Не утепленная стропильная система", value: "non_insulated_rafter_system" },
+    { label: "Не утеплённые стены фронтонов", value: "non_insulated_gable_walls" },
+    { label: "Терраса", value: "terrace" },
+    { label: "Балкон", value: "balcony" },
+    { label: "Кровля", value: "roof" },
+] as const;
+
+export const houseOptions = [
+    { label: "Внешняя отделка фасада", value: "exterior_finish" },
+    { label: "Внутренняя отделка гипсом", value: "interior_gypsum_finish" },
+    { label: "Окна", value: "windows" },
+    { label: "Двери", value: "doors" },
+    { label: "Черновая электрика", value: "rough_electrical" },
+    { label: "Сантехника", value: "plumbing" },
+    { label: "Отопление", value: "heating" },
+    { label: "Вентиляция", value: "ventilation" },
+    { label: "Кондиционирование", value: "air_conditioning" },
+    { label: "Септик", value: "septic" },
+] as const;
 
 export const Parameters: CollectionConfig = {
     slug: 'parameters',
@@ -48,16 +60,16 @@ export const Parameters: CollectionConfig = {
             label: 'Category',
             type: 'select',
             options: [
-                { label: 'Foundation', value: 'foundation' },
-                { label: 'Wall Structure', value: 'wall-structure' },
-                { label: 'Floor/Ceiling Structure', value: 'floor-ceiling-structure' },
-                { label: 'Roof Framing', value: 'roof-framing' },
-                { label: 'Roofing', value: 'roofing' },
-                { label: 'Interior Finishing', value: 'interior-finishing' },
-                { label: 'Windows', value: 'windows' },
-                { label: 'Utilities', value: 'utilities' },
+              ...houseOptions,
+              ...houseComponents,
             ],
             required: true,
+        },
+        {
+            name: 'isUtil',
+            label: "Опция?",
+            type: "checkbox",
+            defaultValue: false,
         },
         {
             name: 'pricePer',

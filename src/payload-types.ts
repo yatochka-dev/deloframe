@@ -176,14 +176,29 @@ export interface Parameter {
   id: number;
   name: string;
   cat:
-    | 'foundation'
-    | 'wall-structure'
-    | 'floor-ceiling-structure'
-    | 'roof-framing'
-    | 'roofing'
-    | 'interior-finishing'
+    | 'exterior_finish'
+    | 'interior_gypsum_finish'
     | 'windows'
-    | 'utilities';
+    | 'doors'
+    | 'rough_electrical'
+    | 'plumbing'
+    | 'heating'
+    | 'ventilation'
+    | 'air_conditioning'
+    | 'septic'
+    | 'foundation'
+    | 'external_walls'
+    | 'internal_walls'
+    | 'partitions'
+    | 'interfloor_slab'
+    | 'insulated_attic_slab'
+    | 'insulated_rafter_system'
+    | 'non_insulated_rafter_system'
+    | 'non_insulated_gable_walls'
+    | 'terrace'
+    | 'balcony'
+    | 'roof';
+  isUtil?: boolean | null;
   pricePer: number;
   weight: number;
   heatLoss: number;
@@ -339,6 +354,7 @@ export interface CallMeSelect<T extends boolean = true> {
 export interface ParametersSelect<T extends boolean = true> {
   name?: T;
   cat?: T;
+  isUtil?: T;
   pricePer?: T;
   weight?: T;
   heatLoss?: T;
