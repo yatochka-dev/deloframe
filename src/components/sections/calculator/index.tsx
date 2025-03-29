@@ -38,8 +38,8 @@ const fetchParameters = async () => {
         }, {});
 
     return {
-        parsedParamsMain: groupByCategory(mainParams),
-        parsedParamsOptional: groupByCategory(optionalParams),
+        parsedParamsMain: groupByCategory(mainParams) as unknown as Record<ParameterCat, ParameterData[]>,
+        parsedParamsOptional: groupByCategory(optionalParams) as unknown as Record<ParameterCat, ParameterData[]>,
     };
 };
 
