@@ -4,7 +4,6 @@ import useCalcStore, { permissibleStoriesValues } from '@/stores/calc'
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -22,13 +21,11 @@ import { z } from 'zod'
 import { useForm, Controller, Control } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Input } from '@/components/ui/input'
+import {storiesEnum} from "@/shared";
 
-interface InitialInputsProps {}
 
 const schema = z.object({
-  stories: z.enum(['1', '2']).transform((value) => {
-    return parseInt(value) as 1 | 2
-  }),
+  stories: storiesEnum,
   width: z.number().min(0.5).max(10000),
   length: z.number().min(0.5).max(10000),
 })

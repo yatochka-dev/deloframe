@@ -63,6 +63,7 @@ const CalculatorMain = async ({}: CalculatorMainProps) => {
                             <Parameters mainParams={parsedParamsMain} optionalParams={parsedParamsOptional} keys={keys} />
                         </DialogContent>
                     </Dialog>
+
                 </div>
                 <div className='w-1/2'>
                     {/*<Building stories={calc.stories }/>*/}

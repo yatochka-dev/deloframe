@@ -10,6 +10,7 @@ import {Button} from "@/components/ui/button";
 import useCalcStore from "@/stores/calc";
 import {Dialog, DialogContent, DialogTitle, DialogTrigger} from '@/components/ui/dialog';
 import {Calculator, SquareFunction} from "lucide-react";
+import {calculate} from "@/app/(calculator)";
 
 interface ParametersProps {
     mainParams: Record<ParameterCat, ParameterData[]>,
@@ -63,7 +64,20 @@ const Parameters = (
                                 </DialogTrigger>
                                 <DialogContent>
                                     <DialogTitle>{category.label}</DialogTitle>
-
+                                <Button onClick={async () => {
+                                    const res = await calculate({
+                                        width: 10,
+                                        length: 8,
+                                        stories: "1",
+                                        params: {
+                                            id: 1,
+                                            amount: 10,
+                                        }
+                                    })
+                                    console.log(res?.data);
+                                }}>
+Calculate
+                                </Button>
                                 </DialogContent>
                             </Dialog>
                         )
