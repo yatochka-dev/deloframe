@@ -71,6 +71,7 @@ export interface Config {
     media: Media;
     'call-me': CallMe;
     parameters: Parameter;
+    categories: Category;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -81,6 +82,7 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     'call-me': CallMeSelect<false> | CallMeSelect<true>;
     parameters: ParametersSelect<false> | ParametersSelect<true>;
+    categories: CategoriesSelect<false> | CategoriesSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -175,30 +177,7 @@ export interface CallMe {
 export interface Parameter {
   id: number;
   name: string;
-  category:
-    | 'exterior_finish'
-    | 'interior_gypsum_finish'
-    | 'windows'
-    | 'doors'
-    | 'rough_electrical'
-    | 'plumbing'
-    | 'heating'
-    | 'ventilation'
-    | 'air_conditioning'
-    | 'septic'
-    | 'foundation'
-    | 'external_walls'
-    | 'internal_walls'
-    | 'partitions'
-    | 'interfloor_slab'
-    | 'insulated_attic_slab'
-    | 'insulated_rafter_system'
-    | 'non_insulated_rafter_system'
-    | 'non_insulated_gable_walls'
-    | 'terrace'
-    | 'balcony'
-    | 'roof';
-  isUtil?: boolean | null;
+  category: number | Category;
   pricePer: number;
   weight: number;
   heatLoss: number;
@@ -241,6 +220,17 @@ export interface Parameter {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "categories".
+ */
+export interface Category {
+  id: number;
+  name: string;
+  isMandatory: boolean;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -261,6 +251,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'parameters';
         value: number | Parameter;
+      } | null)
+    | ({
+        relationTo: 'categories';
+        value: number | Category;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -354,7 +348,6 @@ export interface CallMeSelect<T extends boolean = true> {
 export interface ParametersSelect<T extends boolean = true> {
   name?: T;
   category?: T;
-  isUtil?: T;
   pricePer?: T;
   weight?: T;
   heatLoss?: T;
@@ -406,6 +399,16 @@ export interface ParametersSelect<T extends boolean = true> {
                   };
             };
       };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "categories_select".
+ */
+export interface CategoriesSelect<T extends boolean = true> {
+  name?: T;
+  isMandatory?: T;
   updatedAt?: T;
   createdAt?: T;
 }

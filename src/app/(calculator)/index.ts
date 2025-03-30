@@ -3,8 +3,6 @@ import { z } from 'zod'
 import { storiesEnum } from '@/shared'
 import { actionClient } from '@/lib/safe-action'
 import { evaluate } from 'mathjs'
-import { getPayload } from 'payload'
-import config from '@payload-config'
 import { fetchParameters } from '@/lib/fetchParameters'
 
 const schema = z.object({

@@ -1,43 +1,13 @@
 import { CollectionConfig } from 'payload'
 import admin from '@/collections/access/admin'
 import all from '@/collections/access/all'
-import type { Parameter } from '@/payload-types'
+import type { Category, Parameter } from '@/payload-types'
 
-export type ParameterData = Parameter
-export type ParameterCat = houseComponentCat & houseOptionCat
+export type ParameterData = Parameter & {
+  category: Category
+}
 
-export type houseComponentCat = (typeof houseComponents)[number]['value']
-export type houseOptionCat = (typeof houseOptions)[number]['value']
-
-export const houseComponents = [
-  { label: 'Фундамент', value: 'foundation' },
-  { label: 'Внешние стены', value: 'external_walls' },
-  { label: 'Внутренние стены', value: 'internal_walls' },
-  { label: 'Перегородки', value: 'partitions' },
-  { label: 'Междуэтажные перекрытие', value: 'interfloor_slab' },
-  { label: 'Утеплённое перекрытие чердака', value: 'insulated_attic_slab' },
-  { label: 'Утепленная стропильная система', value: 'insulated_rafter_system' },
-  { label: 'Не утепленная стропильная система', value: 'non_insulated_rafter_system' },
-  { label: 'Не утеплённые стены фронтонов', value: 'non_insulated_gable_walls' },
-  { label: 'Терраса', value: 'terrace' },
-  { label: 'Балкон', value: 'balcony' },
-  { label: 'Кровля', value: 'roof' },
-] as const
-
-export const houseOptions = [
-  { label: 'Внешняя отделка фасада', value: 'exterior_finish' },
-  { label: 'Внутренняя отделка гипсом', value: 'interior_gypsum_finish' },
-  { label: 'Окна', value: 'windows' },
-  { label: 'Двери', value: 'doors' },
-  { label: 'Черновая электрика', value: 'rough_electrical' },
-  { label: 'Сантехника', value: 'plumbing' },
-  { label: 'Отопление', value: 'heating' },
-  { label: 'Вентиляция', value: 'ventilation' },
-  { label: 'Кондиционирование', value: 'air_conditioning' },
-  { label: 'Септик', value: 'septic' },
-] as const
-export const houseComponentsValues = [...houseComponents.map((o) => o.value)] as const
-export const houseOptionsValues = [...houseOptions.map((o) => o.value)] as const
+export type CategoryID = number
 
 export const Parameters: CollectionConfig = {
   slug: 'parameters',
@@ -60,15 +30,9 @@ export const Parameters: CollectionConfig = {
     {
       name: 'category',
       label: 'Category',
-      type: 'select',
-      options: [...houseOptions, ...houseComponents],
+      type: 'relationship',
+      relationTo: 'categories',
       required: true,
-    },
-    {
-      name: 'isUtil',
-      label: 'Опция?',
-      type: 'checkbox',
-      defaultValue: false,
     },
     {
       name: 'pricePer',
