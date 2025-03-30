@@ -79,7 +79,7 @@ export function AppSidebar(props: AppSidebarProps) {
   }
 
   return (
-    <Sidebar>
+    <Sidebar variant={'inset'} collapsible={'offcanvas'}>
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel>DeloFrame</SidebarGroupLabel>

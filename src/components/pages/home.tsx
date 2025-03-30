@@ -7,7 +7,7 @@ import Section from '@/components/ui/section'
 
 export default function HomePage() {
   return (
-    <>
+    <div>
       <Section name={'hero'}>
         <HeroSection
           title={"Hello, I'm Philip"}
@@ -22,6 +22,6 @@ export default function HomePage() {
       <Section name={'calculator'}>
         <CalculatorMain />
       </Section>
-    </>
+    </div>
   )
 }

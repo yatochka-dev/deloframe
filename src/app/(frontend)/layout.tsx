@@ -1,14 +1,12 @@
 import React from 'react'
 import './../globals.css'
-import { Header } from '@/components/layout/header'
-import { Footer } from '@/components/layout/footer'
 import { getPayload } from 'payload'
 import config from '@payload-config'
 import { ThemeProvider } from '@/components/theme-provider.component'
-import { Tinos } from 'next/font/google'
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
 import { AppSidebar } from '@/components/ui/sidebar/index'
 import { headers } from 'next/headers'
+
 // const tinos = Tinos({
 //   subsets: ['cyrillic'],
 //   weight: ['400', '700'],
@@ -47,7 +45,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
           <SidebarProvider>
             <AppSidebar showDashboard={auth.user?.roles?.includes('admin') ?? false} />
 
-            <main className={'min-h-screen flex justify-center flex-col w-full'}>
+            <main className={'min-h-screen flex justify-center flex-col w-full '}>
               <div className={'m-4 p-2 bg-accent rounded-md'}>
                 <SidebarTrigger />
                 {children}
