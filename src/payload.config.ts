@@ -10,7 +10,7 @@ import { Users } from '@/collections/Users'
 import { Media } from '@/collections/Media'
 import { CallMe } from '@/collections/CallMe'
 import { BaseSettings } from '@/globals/settings'
-import Parameters from "@/collections/Parameter";
+import Parameters from '@/collections/Parameter'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)

@@ -1,31 +1,30 @@
-import { evaluate, parse } from 'mathjs';
+import { evaluate, parse } from 'mathjs'
 const CONSTANTS = {
-  NO: "(0)",
+  NO: '(0)',
   NOHEATLOSSATALL: {
     below9deg: {
-      oneStory: "(0)",
-      twoStory: "(0)",
-      oneStoryPF: "(0)",
-      twoStoryPF: "(0)",
+      oneStory: '(0)',
+      twoStory: '(0)',
+      oneStoryPF: '(0)',
+      twoStoryPF: '(0)',
     },
     below39deg: {
-      oneStory: "(0)",
-      twoStory: "(0)",
-      oneStoryPF: "(0)",
-      twoStoryPF: "(0)",
+      oneStory: '(0)',
+      twoStory: '(0)',
+      oneStoryPF: '(0)',
+      twoStoryPF: '(0)',
     },
-
-  }
+  },
 }
 
-type floors = "oneStory" | "twoStory" | "oneStoryPF" | "twoStoryPF"
+type floors = 'oneStory' | 'twoStory' | 'oneStoryPF' | 'twoStoryPF'
 type ParameterCat =
-    | 'foundation' // Фундамент
-    | 'structure' // Конструкция
-    | 'finishing' // Отделка
-    | 'roofing' // Кровля
-    | 'utilities' // Инженерные сети
-    | 'windows'; // Окна
+  | 'foundation' // Фундамент
+  | 'structure' // Конструкция
+  | 'finishing' // Отделка
+  | 'roofing' // Кровля
+  | 'utilities' // Инженерные сети
+  | 'windows' // Окна
 
 type FORMULA = string
 type STATIC = number
@@ -39,7 +38,7 @@ interface Parameter {
 
   matrices: {
     amount: {
-     [key in floors]: FORMULA
+      [key in floors]: FORMULA
     }
     price: {
       [key in floors]: FORMULA
@@ -88,8 +87,8 @@ const ParameterData: Parameter[] = [
     },
   },
   {
-    name: "Свайно-Забивной",
-    cat: "foundation",
+    name: 'Свайно-Забивной',
+    cat: 'foundation',
     pricePer: 5500,
     weight: 240,
     heatLoss: 0,
@@ -112,12 +111,12 @@ const ParameterData: Parameter[] = [
         twoStory: '(weight*amount)',
         twoStoryPF: '(0)',
       },
-      heatLoss: CONSTANTS.NOHEATLOSSATALL
-    }
+      heatLoss: CONSTANTS.NOHEATLOSSATALL,
+    },
   },
   {
-    cat: "roofing",
-    name: "Металлочерепица",
+    cat: 'roofing',
+    name: 'Металлочерепица',
     pricePer: 1000,
     weight: 15,
     heatLoss: 0,
@@ -140,13 +139,12 @@ const ParameterData: Parameter[] = [
         oneStoryPF: '(weight*amount)',
         twoStoryPF: '(weight*amount)',
       },
-      heatLoss: CONSTANTS.NOHEATLOSSATALL
-
-    }
+      heatLoss: CONSTANTS.NOHEATLOSSATALL,
+    },
   },
   {
-    cat: "roofing",
-    name: "Гибкая Битумная Черепица",
+    cat: 'roofing',
+    name: 'Гибкая Битумная Черепица',
     pricePer: 2300,
     weight: 25,
     heatLoss: 0,
@@ -169,18 +167,12 @@ const ParameterData: Parameter[] = [
         oneStoryPF: '(weight*amount)',
         twoStoryPF: '(weight*amount)',
       },
-      heatLoss: CONSTANTS.NOHEATLOSSATALL
-
-    }
-  }
+      heatLoss: CONSTANTS.NOHEATLOSSATALL,
+    },
+  },
 ]
 
-function evaluateParameter(
-    f: floors,
-    length: number,
-    width: number,
-    p: Parameter,
-) {
+function evaluateParameter(f: floors, length: number, width: number, p: Parameter) {
   // need to evaluate al matrices
   const vars = {
     length: length,
@@ -191,7 +183,7 @@ function evaluateParameter(
     amount: evaluate(p.matrices.amount[f], {
       length: 10,
       width: 8,
-    })
+    }),
   }
 
   return {
@@ -206,4 +198,4 @@ function evaluateParameter(
 // console.log(evaluateParameter("oneStory", 10, 8, ParameterData[0]))
 // console.log(evaluateParameter("oneStory", 10, 8, ParameterData[1]))
 // console.log(evaluateParameter("oneStory", 10, 8, ParameterData[2]))
-console.log(evaluateParameter("oneStory", 10, 8, ParameterData[3]))
+console.log(evaluateParameter('oneStory', 10, 8, ParameterData[3]))

@@ -12,8 +12,8 @@ import { Tinos } from 'next/font/google'
 // })
 
 export const metadata = {
-  description: 'A blank template using Payload in a Next.js app.',
-  title: 'Payload Blank Template',
+  // add desc @todo
+  title: 'Volkov App',
 }
 
 // @todo use shadcn sidebar instead of header
@@ -27,7 +27,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
   })
 
   return (
-    <html lang="en" suppressHydrationWarning >
+    <html lang="en" suppressHydrationWarning>
       <body>
         <ThemeProvider
           attribute="class"

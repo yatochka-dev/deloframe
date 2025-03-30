@@ -21,8 +21,7 @@ import { z } from 'zod'
 import { useForm, Controller, Control } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Input } from '@/components/ui/input'
-import {storiesEnum} from "@/shared";
-
+import { storiesEnum } from '@/shared'
 
 const schema = z.object({
   stories: storiesEnum,
