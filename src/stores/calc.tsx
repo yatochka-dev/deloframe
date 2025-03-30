@@ -1,5 +1,6 @@
-import { houseComponentCat } from '@/collections/Parameter'
+import { houseComponentCat, houseOptionCat, ParameterCat } from '@/collections/Parameter'
 import { create } from 'zustand'
+import { persist, createJSONStorage } from 'zustand/middleware'
 
 export const permissibleStoriesValues = [1, 2] as const
 
@@ -14,75 +15,78 @@ interface ICalcStore {
   customConfig: boolean
   switchConfig: () => void
 
-  parameters: {
-    houseComponents: Record<houseComponentCat, { id: number; customAmount?: number }[]>
-    houseOptions: Partial<Record<houseComponentCat, { id: number; customAmount?: number }[]>>
-  }
+  params: Record<
+    ParameterCat,
+    {
+      id: number
+      customAmount?: number
+    }[]
+  >
+  addParam: (param: { category: ParameterCat; id: number; customAmount?: number }) => void
+  removeParam: (param: { category: ParameterCat; id: number }) => void
 }
 
-const useCalcStore = create<ICalcStore>()((set) => {
-  return {
-    initialInput: {
-      stories: 1,
-      width: 10,
-      length: 8,
-    },
-    customConfig: false,
-
-    parameters: {
-      houseComponents: {
-        foundation: [],
-        external_walls: [],
-        internal_walls: [],
-        partitions: [],
-        interfloor_slab: [],
-        insulated_attic_slab: [],
-        insulated_rafter_system: [],
-        non_insulated_rafter_system: [],
-        non_insulated_gable_walls: [],
-        terrace: [],
-        balcony: [],
-        roof: [],
+const useCalcStore = create<ICalcStore>()(
+  persist(
+    (set) => ({
+      initialInput: {
+        stories: 1,
+        width: 10,
+        length: 8,
       },
-      houseOptions: {},
-    },
-
-    switchConfig: () => {
-      set((state) => {
-        const uniqueHouseComponents: Record<string, unknown[]> = {}
-        Object.entries(state.parameters.houseComponents).forEach(([key, value]) => {
-          uniqueHouseComponents[key] = value.length > 1 ? [value[0]] : value
-        })
-
-        const uniqueHouseOptions: Record<string, unknown[]> = {}
-        Object.entries(state.parameters.houseOptions).forEach(([key, value]) => {
-          uniqueHouseOptions[key] = value.length > 1 ? [value[0]] : value
-        })
-
-        return {
-          customConfig: !state.customConfig,
-          parameters: {
-            houseComponents: {
-              ...state.parameters.houseComponents,
-              ...uniqueHouseComponents,
-            },
-            houseOptions: {
-              ...state.parameters.houseOptions,
-              ...uniqueHouseOptions,
-            },
+      updateInitialInput: (input) =>
+        set((state) => ({
+          initialInput: {
+            ...state.initialInput,
+            ...input,
           },
-        }
-      })
+        })),
+      customConfig: false,
+      switchConfig: () =>
+        set((state) => ({
+          customConfig: !state.customConfig,
+        })),
+
+      params: {},
+      addParam: (param) => {
+        set((state) => ({
+          params: {
+            ...state.params,
+            [param.category]: state.customConfig
+              ? [
+                  ...state.params[param.category],
+                  {
+                    id: param.id,
+                    customAmount: param.customAmount,
+                  },
+                ]
+              : [
+                  {
+                    id: param.id,
+                    customAmount: param.customAmount,
+                  },
+                ],
+          },
+        }))
+      },
+      removeParam: (param) => {
+        set((state) => {
+          const categoryParams = (state.params[param.category] ?? []) as { id: number }[]
+          return {
+            params: {
+              ...state.params,
+              [param.category]: categoryParams.filter((p) => p.id !== param.id),
+            },
+          }
+        })
+      },
+    }),
+    {
+      name: 'calc-store',
+      storage: createJSONStorage(() => localStorage),
     },
-    updateInitialInput: (input) =>
-      set((state) => ({
-        initialInput: {
-          ...state.initialInput,
-          ...input,
-        },
-      })),
-  }
-})
+  ),
+)
 
 export default useCalcStore
 export type { ICalcStore }

@@ -1,9 +1,11 @@
 'use server'
-import { createSafeActionClient } from 'next-safe-action'
 import { z } from 'zod'
 import { storiesEnum } from '@/shared'
 import { actionClient } from '@/lib/safe-action'
 import { evaluate } from 'mathjs'
+import { getPayload } from 'payload'
+import config from '@payload-config'
+import { fetchParameters } from '@/lib/fetchParameters'
 
 const schema = z.object({
   width: z.number(),
@@ -26,3 +28,7 @@ export const calculate = actionClient
     }
     return evaluate('(width/2+1)*(length/2+1)*stories', vars)
   })
+
+export const getParameters = actionClient.action(async () => {
+  return await fetchParameters()
+})
