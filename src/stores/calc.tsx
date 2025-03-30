@@ -25,6 +25,7 @@ interface ICalcStore {
   params: Record<CategoryID, Param[]>
   addParam: (param: { category: CategoryID; id: number; customAmount?: number }) => void
   removeParam: (param: { category: CategoryID; id: number; isMandatory: boolean }) => void
+  changeParamAmount: (param: { category: CategoryID; id: number; customAmount: number }) => void
 }
 
 function verifyParams(params: Record<CategoryID, Param[]>) {
@@ -104,6 +105,24 @@ const useCalcStore = create<ICalcStore>()(
             params: {
               ...state.params,
               [param.category]: categoryParams.filter((p) => p.id !== param.id),
+            },
+          }
+        })
+      },
+
+      changeParamAmount: (param) => {
+        set((state) => {
+          const categoryParams = state.params[param.category] || []
+          const newParam = {
+            id: param.id,
+            customAmount: param.customAmount,
+          }
+          return {
+            params: {
+              ...state.params,
+              [param.category]: state.customConfig
+                ? [...categoryParams.filter((p) => p.id !== param.id), newParam]
+                : [newParam],
             },
           }
         })

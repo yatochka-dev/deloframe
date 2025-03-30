@@ -1,8 +1,9 @@
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
-import Link from 'next/link'
+
 import BG from '@/app/../../public/bg.jpg'
 import BlurText from '@/components/ui/animations/BlurText/BlurText'
+import ScrollTo from '@/components/ui/scroll-to'
 
 interface HeroSectionProps {
   title: string
@@ -37,8 +38,10 @@ export function HeroSection({
           />
         </div>
         <div>
-          <Button size="lg" asChild>
-            <a href="#calc">Расчитать стоимость</a>
+          <Button size="lg" asChild className={'cursor-pointer'}>
+            <ScrollTo to={'calculator'} smooth={true} duration={500}>
+              Расчитать стоимость
+            </ScrollTo>
           </Button>
         </div>
         <div className={'max-w-sm max-h-10 hidden sr-only'}>

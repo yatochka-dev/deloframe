@@ -6,6 +6,9 @@ import { getPayload } from 'payload'
 import config from '@payload-config'
 import { ThemeProvider } from '@/components/theme-provider.component'
 import { Tinos } from 'next/font/google'
+import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
+import { AppSidebar } from '@/components/ui/sidebar/index'
+import { headers } from 'next/headers'
 // const tinos = Tinos({
 //   subsets: ['cyrillic'],
 //   weight: ['400', '700'],
@@ -20,10 +23,15 @@ export const metadata = {
 
 export default async function RootLayout(props: { children: React.ReactNode }) {
   const { children } = props
+  const h = await headers()
   const payload = await getPayload({ config })
 
   const globals = await payload.findGlobal({
     slug: 'settings',
+  })
+
+  const auth = await payload.auth({
+    headers: h,
   })
 
   return (
@@ -35,10 +43,17 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
           enableSystem
           disableTransitionOnChange
         >
-          <Header globals={globals} />
-          <main className={'min-h-screen'}>{children}</main>
+          {/*<Header globals={globals} />*/}
+          <SidebarProvider>
+            <AppSidebar showDashboard={auth.user?.roles?.includes('admin') ?? false} />
 
-          <Footer />
+            <main className={'min-h-screen flex justify-center flex-col w-full'}>
+              <div className={'m-4 p-2 bg-accent rounded-md'}>
+                <SidebarTrigger />
+                {children}
+              </div>
+            </main>
+          </SidebarProvider>
         </ThemeProvider>
       </body>
     </html>
