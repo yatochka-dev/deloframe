@@ -15,6 +15,7 @@ const Categories: CollectionConfig = {
       type: 'text',
       required: true, // This makes the name field mandatory
       label: 'Category Name',
+      localized: true,
     },
     {
       name: 'isMandatory',

@@ -45,9 +45,7 @@ const Parameters = ({
             return (
               <Dialog key={`${category.id}-dialog-${category.name.toLowerCase()}`}>
                 <DialogTrigger asChild>
-                  <Button variant="outline" className="cursor-pointer">
-                    {category.name}
-                  </Button>
+                  <Button className="cursor-pointer">{category.name}</Button>
                 </DialogTrigger>
                 <DialogContent>
                   <DialogTitle>
@@ -79,9 +77,7 @@ const Parameters = ({
             return (
               <Dialog key={`${category.id}-dialog-${category.name.toLowerCase()}`}>
                 <DialogTrigger asChild>
-                  <Button variant="outline" className="cursor-pointer">
-                    {category.name}
-                  </Button>
+                  <Button className="cursor-pointer">{category.name}</Button>
                 </DialogTrigger>
                 <DialogContent>
                   <DialogTitle>

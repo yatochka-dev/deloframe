@@ -38,6 +38,17 @@ export default buildConfig({
 
   globals: [BaseSettings],
   sharp,
+  localization: {
+    locales: [
+      { rtl: true, code: 'he', label: 'עברית' },
+      {
+        code: 'ru',
+        label: 'Русский',
+        rtl: false,
+      },
+    ], // required
+    defaultLocale: 'ru', // required
+  },
   plugins: [
     payloadCloudPlugin(),
     // storage-adapter-placeholder

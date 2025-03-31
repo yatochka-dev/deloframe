@@ -96,7 +96,7 @@ export interface Config {
   globalsSelect: {
     settings: SettingsSelect<false> | SettingsSelect<true>;
   };
-  locale: null;
+  locale: 'he' | 'ru';
   user: User & {
     collection: 'users';
   };

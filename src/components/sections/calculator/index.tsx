@@ -12,7 +12,7 @@ export default async function CalculatorMain() {
   return (
     <section
       id="calc"
-      className="min-h-screen h-full w-full flex justify-center px-20 container mx-auto py-32"
+      className="min-h-screen h-full w-full flex justify-center px-5 container mx-auto py-16"
     >
       <div className="bg-card w-full p-4 flex rounded-md shadow-lg">
         <div className="w-1/2">
