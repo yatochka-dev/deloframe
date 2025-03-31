@@ -3,7 +3,7 @@ import './../globals.css'
 import { getPayload } from 'payload'
 import config from '@payload-config'
 import { ThemeProvider } from '@/components/theme-provider.component'
-import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
+import { SidebarInset, SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
 import { AppSidebar } from '@/components/ui/sidebar/index'
 import { headers } from 'next/headers'
 
@@ -45,12 +45,12 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
           <SidebarProvider>
             <AppSidebar showDashboard={auth.user?.roles?.includes('admin') ?? false} />
 
-            <main className={'min-h-screen flex justify-center flex-col w-full '}>
-              <div className={'m-4 p-2 bg-accent rounded-md'}>
+            <SidebarInset>
+              <main className={'min-h-screen flex justify-center flex-col w-full p-2'}>
                 <SidebarTrigger />
                 {children}
-              </div>
-            </main>
+              </main>
+            </SidebarInset>
           </SidebarProvider>
         </ThemeProvider>
       </body>
