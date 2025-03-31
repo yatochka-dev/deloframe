@@ -4,7 +4,7 @@ import { getPayload } from 'payload'
 import config from '@payload-config'
 import { ThemeProvider } from '@/components/theme-provider.component'
 import { SidebarInset, SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
-import { AppSidebar } from '@/components/ui/sidebar/index'
+import { AppSidebar } from '@/components/layout/sidebar/index'
 import { headers } from 'next/headers'
 
 // const tinos = Tinos({
@@ -16,8 +16,6 @@ export const metadata = {
   // add desc @todo
   title: 'Volkov App',
 }
-
-// @todo use shadcn sidebar instead of header
 
 export default async function RootLayout(props: { children: React.ReactNode }) {
   const { children } = props

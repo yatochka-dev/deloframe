@@ -10,7 +10,6 @@ import {
   Sun,
 } from 'lucide-react'
 import Link from 'next/link'
-
 import {
   Sidebar,
   SidebarContent,
@@ -28,32 +27,24 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-import { Button } from '@/components/ui/button'
 import { useTheme } from 'next-themes'
 import { Link as ScrollTo } from 'react-scroll'
+import { changeUserLocale } from '@/app/(actions)'
 
-// Menu items.
-const items = [
-  {
-    title: 'Home',
-    url: 'hero',
-    icon: Home,
-  },
-  {
-    title: 'Calculator',
-    url: 'calculator',
-    icon: Calculator,
-  },
+// Menu configuration
+const menuItems = [
+  { title: 'Home', url: 'hero', icon: Home },
+  { title: 'Calculator', url: 'calculator', icon: Calculator },
 ]
 
-// Language options
-const languages = [
+// Language configuration
+const languageOptions = [
   { code: 'he', name: 'עברית' },
   { code: 'ru', name: 'Русский' },
-]
+] as const
 
-// Theme options
-const themes = [
+// Theme configuration
+const themeOptions = [
   { value: 'light', label: 'Light', icon: Sun },
   { value: 'dark', label: 'Dark', icon: Moon },
   { value: 'system', label: 'System', icon: Calendar },
@@ -63,43 +54,58 @@ interface AppSidebarProps {
   showDashboard: boolean
 }
 
-export function AppSidebar(props: AppSidebarProps) {
+export function AppSidebar({ showDashboard }: AppSidebarProps) {
   const { setTheme } = useTheme()
 
-  // Empty event handlers
-  const handleLanguageChange = (langCode: string) => {
+  const handleLanguageChange = async (langCode: (typeof languageOptions)[number]['code']) => {
+    // @todo - implement error handling: Errors may occur when changing user locale. Include retry logic or fallback options.
     console.log(`Language changed to: ${langCode}`)
-    // Implement language change logic here
+    await changeUserLocale(langCode)
   }
 
   const handleThemeChange = (theme: string) => {
+    // @todo - implement error handling: Consider invalid theme values and ensure setTheme handles these gracefully.
     console.log(`Theme changed to: ${theme}`)
-    // Implement theme change logic here
     setTheme(theme)
   }
 
+  const renderMenuItems = () =>
+    menuItems.map((item) => (
+      <SidebarMenuItem key={item.title}>
+        <SidebarMenuButton asChild>
+          <ScrollTo to={item.url} smooth duration={500}>
+            <item.icon />
+            <span>{item.title}</span>
+          </ScrollTo>
+        </SidebarMenuButton>
+      </SidebarMenuItem>
+    ))
+
+  const renderLanguageOptions = () =>
+    languageOptions.map((lang) => (
+      <DropdownMenuItem key={lang.code} onClick={() => handleLanguageChange(lang.code)}>
+        {lang.name}
+      </DropdownMenuItem>
+    ))
+
+  const renderThemeOptions = () =>
+    themeOptions.map((theme) => (
+      <DropdownMenuItem key={theme.value} onClick={() => handleThemeChange(theme.value)}>
+        <theme.icon />
+        <span>{theme.label}</span>
+      </DropdownMenuItem>
+    ))
+
   return (
-    <Sidebar variant={'inset'} collapsible={'offcanvas'}>
+    <Sidebar variant="inset" collapsible="offcanvas">
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel>DeloFrame</SidebarGroupLabel>
           <SidebarGroupContent>
-            <SidebarMenu>
-              {items.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <ScrollTo to={item.url} smooth={true} duration={500}>
-                      <item.icon />
-                      <span>{item.title}</span>
-                    </ScrollTo>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
+            <SidebarMenu>{renderMenuItems()}</SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
 
-        {/* Language Switcher */}
         <SidebarGroup>
           <SidebarGroupLabel>Settings</SidebarGroupLabel>
           <SidebarGroupContent>
@@ -107,7 +113,7 @@ export function AppSidebar(props: AppSidebarProps) {
               <SidebarMenuItem>
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <SidebarMenuButton className={'cursor-pointer'}>
+                    <SidebarMenuButton className="cursor-pointer">
                       <Globe />
                       <span>Language</span>
                       <ChevronDown className="ml-auto h-4 w-4" />
@@ -117,23 +123,15 @@ export function AppSidebar(props: AppSidebarProps) {
                     align="start"
                     className="w-[--radix-dropdown-menu-trigger-width]"
                   >
-                    {languages.map((lang) => (
-                      <DropdownMenuItem
-                        key={lang.code}
-                        onClick={() => handleLanguageChange(lang.code)}
-                      >
-                        {lang.name}
-                      </DropdownMenuItem>
-                    ))}
+                    {renderLanguageOptions()}
                   </DropdownMenuContent>
                 </DropdownMenu>
               </SidebarMenuItem>
 
-              {/* Theme Switcher */}
               <SidebarMenuItem>
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <SidebarMenuButton className={'cursor-pointer'}>
+                    <SidebarMenuButton className="cursor-pointer">
                       <Calendar />
                       <span>Theme</span>
                       <ChevronDown className="ml-auto h-4 w-4" />
@@ -143,15 +141,7 @@ export function AppSidebar(props: AppSidebarProps) {
                     align="start"
                     className="w-[--radix-dropdown-menu-trigger-width]"
                   >
-                    {themes.map((theme) => (
-                      <DropdownMenuItem
-                        key={theme.value}
-                        onClick={() => handleThemeChange(theme.value)}
-                      >
-                        <theme.icon />
-                        <span>{theme.label}</span>
-                      </DropdownMenuItem>
-                    ))}
+                    {renderThemeOptions()}
                   </DropdownMenuContent>
                 </DropdownMenu>
               </SidebarMenuItem>
@@ -160,8 +150,7 @@ export function AppSidebar(props: AppSidebarProps) {
         </SidebarGroup>
       </SidebarContent>
 
-      {/* Footer with Dashboard Link */}
-      {props.showDashboard && (
+      {showDashboard && (
         <SidebarFooter>
           <SidebarMenu>
             <SidebarMenuItem>
