@@ -53,7 +53,7 @@ function determinePreferredLocale(
 /**
  * Extracts the preferred locale from the Accept-Language header.
  */
-function extractPreferredLocale(header: string): string | undefined {
+function extractPreferredLocale(header: string): string {
   const locales = header.split(',').map((lang) => lang.split(';')[0])
   for (const lang of locales) {
     const langCode = lang.split('-')[0]
@@ -61,8 +61,8 @@ function extractPreferredLocale(header: string): string | undefined {
       return langCode
     }
   }
-  // @todo - implement error handling: Ensure that languages other than he and ru do not cause unexpected results.
-  return undefined
+  // Default to 'ru' if other languages are encountered.
+  return 'ru'
 }
 
 /**
