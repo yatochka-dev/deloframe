@@ -2,7 +2,6 @@ import { MigrateUpArgs, MigrateDownArgs, sql } from '@payloadcms/db-postgres'
 
 export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   await db.execute(sql`
-   CREATE TYPE "public"."_locales" AS ENUM('he', 'ru');
   CREATE TABLE IF NOT EXISTS "categories_locales" (
   	"name" varchar NOT NULL,
   	"id" serial PRIMARY KEY NOT NULL,
