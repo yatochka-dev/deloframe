@@ -12,9 +12,16 @@ import { CallMe } from '@/collections/CallMe'
 import { BaseSettings } from '@/globals/settings'
 import Parameters from '@/collections/Parameter'
 import Categories from '@/collections/Category'
+import { HeroSectionSettings } from '@/globals/hero'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
+export const locales = [
+  { code: 'he', label: 'עברית', rtl: true },
+  { code: 'ru', label: 'Русский', rtl: false },
+] as const
+
+export type LocaleCode = (typeof locales)[number]['code']
 
 export default buildConfig({
   admin: {
@@ -36,17 +43,11 @@ export default buildConfig({
     },
   }),
 
-  globals: [BaseSettings],
+  globals: [BaseSettings, HeroSectionSettings],
   sharp,
   localization: {
-    locales: [
-      { rtl: true, code: 'he', label: 'עברית' },
-      {
-        code: 'ru',
-        label: 'Русский',
-        rtl: false,
-      },
-    ], // required
+    // @ts-expect-error
+    locales: locales, // required
     defaultLocale: 'ru', // required
   },
   plugins: [

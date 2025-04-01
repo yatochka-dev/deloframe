@@ -6,6 +6,7 @@ import { ThemeProvider } from '@/components/theme-provider.component'
 import { SidebarInset, SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
 import { AppSidebar } from '@/components/layout/sidebar/index'
 import { headers } from 'next/headers'
+import NextTopLoader from 'nextjs-toploader'
 
 // const tinos = Tinos({
 //   subsets: ['cyrillic'],
@@ -33,6 +34,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
+        {/*<NextTopLoader color={'red'} />*/}
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

@@ -1,5 +1,5 @@
 import { getPayload } from 'payload'
-import config from '@payload-config'
+import config, { LocaleCode } from '@payload-config'
 import { CategoryID, ParameterData } from '@/collections/Parameter'
 import { Category } from '@/payload-types'
 
@@ -8,18 +8,20 @@ import { Category } from '@/payload-types'
  *
  * @returns An object containing main and optional parameters categorized by their respective categories.
  */
-export const fetchParameters = async () => {
+export const fetchParameters = async (localeCode: LocaleCode) => {
   try {
     const payload = await getPayload({ config })
 
     const params = await payload.find({
       collection: 'parameters',
       limit: 10000,
+      locale: localeCode,
     })
     const paramDocs = params.docs as ParameterData[]
     const mandatoryCategories = await payload.find({
       collection: 'categories',
       limit: 10000,
+      locale: localeCode,
       where: {
         isMandatory: {
           equals: true,
@@ -30,6 +32,7 @@ export const fetchParameters = async () => {
     const optionalCategories = await payload.find({
       collection: 'categories',
       limit: 10000,
+      locale: localeCode,
       where: {
         isMandatory: {
           equals: false,

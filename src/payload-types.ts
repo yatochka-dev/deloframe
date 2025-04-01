@@ -92,9 +92,11 @@ export interface Config {
   };
   globals: {
     settings: Setting;
+    herosection: Herosection;
   };
   globalsSelect: {
     settings: SettingsSelect<false> | SettingsSelect<true>;
+    herosection: HerosectionSelect<false> | HerosectionSelect<true>;
   };
   locale: 'he' | 'ru';
   user: User & {
@@ -450,9 +452,24 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
  */
 export interface Setting {
   id: number;
-  sitename: string;
-  callus: string;
-  phone: string;
+  primaryGroup: string;
+  homeLink: string;
+  calculatorLink: string;
+  secondaryGroup: string;
+  languageSwitcher: string;
+  themeSwitcher: string;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "herosection".
+ */
+export interface Herosection {
+  id: number;
+  title: string;
+  subtitle: string;
+  cta: string;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -461,9 +478,24 @@ export interface Setting {
  * via the `definition` "settings_select".
  */
 export interface SettingsSelect<T extends boolean = true> {
-  sitename?: T;
-  callus?: T;
-  phone?: T;
+  primaryGroup?: T;
+  homeLink?: T;
+  calculatorLink?: T;
+  secondaryGroup?: T;
+  languageSwitcher?: T;
+  themeSwitcher?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "herosection_select".
+ */
+export interface HerosectionSelect<T extends boolean = true> {
+  title?: T;
+  subtitle?: T;
+  cta?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

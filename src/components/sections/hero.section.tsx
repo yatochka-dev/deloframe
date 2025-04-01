@@ -9,38 +9,27 @@ interface HeroSectionProps {
   title: string
   subtitle: string
   ctaText: string
-  ctaLink: string
-  backgroundImage: string
 }
 
-export function HeroSection({
-  title,
-  subtitle,
-  ctaText,
-  ctaLink,
-  backgroundImage,
-}: HeroSectionProps) {
+export function HeroSection({ title, subtitle, ctaText }: HeroSectionProps) {
   return (
-    <section id="hero" className="relative min-h-screen w-full">
+    <section id="hero" className="relative min-h-screen w-full flex justify-center">
       <div className="absolute flex-col gap-5 inset-0 z-20 flex items-center justify-center container mx-auto text-center">
-        <div className="flex max-w-5xl">
-          <BlurText
-            className="text-5xl font-bold justify-center"
-            text="Строим теплые экологичные каркасные дома под отделку по всей Сибири"
-            direction="top"
-          />
+        <div className="flex max-w-3xl">
+          <BlurText className="text-3xl font-bold justify-center" text={title} direction="top" />
         </div>
         <div className="flex max-w-2xl">
           <BlurText
-            className="text-3xl justify-center"
-            text="Каждому покупателю домокомплекта проект конструкции - Бесплатно!"
+            className="text-xl justify-center"
+            text={subtitle}
             direction="bottom"
+            delay={200}
           />
         </div>
         <div>
-          <Button size="lg" asChild className={'cursor-pointer'}>
+          <Button asChild className={'cursor-pointer'}>
             <ScrollTo to={'calculator'} smooth={true} duration={500}>
-              Расчитать стоимость
+              {ctaText}
             </ScrollTo>
           </Button>
         </div>
