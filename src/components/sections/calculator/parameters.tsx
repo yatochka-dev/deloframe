@@ -21,7 +21,7 @@ type CategoryParameters = Record<CategoryID, ParameterData[]>
 
 const ParametersCategorySchema = z.object({
   parsedParamsMain: z.record(
-    z.string(),
+    z.number(),
     z.array(
       z.object({
         id: z.string(),
@@ -30,7 +30,7 @@ const ParametersCategorySchema = z.object({
     ),
   ),
   parsedParamsOptional: z.record(
-    z.string(),
+    z.number(),
     z.array(
       z.object({
         id: z.string(),
