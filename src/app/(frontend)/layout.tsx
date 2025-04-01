@@ -20,17 +20,6 @@ export const metadata = {
 
 export default async function RootLayout(props: { children: React.ReactNode }) {
   const { children } = props
-  const h = await headers()
-  const payload = await getPayload({ config })
-
-  const globals = await payload.findGlobal({
-    slug: 'settings',
-  })
-
-  const auth = await payload.auth({
-    headers: h,
-  })
-
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
@@ -42,16 +31,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
           disableTransitionOnChange
         >
           {/*<Header globals={globals} />*/}
-          <SidebarProvider>
-            <AppSidebar showDashboard={auth.user?.roles?.includes('admin') ?? false} />
-
-            <SidebarInset>
-              <main className={'min-h-screen flex justify-center flex-col w-full p-2'}>
-                <SidebarTrigger />
-                {children}
-              </main>
-            </SidebarInset>
-          </SidebarProvider>
+          <SidebarProvider>{children}</SidebarProvider>
         </ThemeProvider>
       </body>
     </html>

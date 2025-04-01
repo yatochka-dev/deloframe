@@ -30,12 +30,9 @@ import {
 import { useTheme } from 'next-themes'
 import { Link as ScrollTo } from 'react-scroll'
 import { changeUserLocale } from '@/app/(actions)'
+import { Setting } from '@/payload-types'
 
 // Menu configuration
-const menuItems = [
-  { title: 'Home', url: 'hero', icon: Home },
-  { title: 'Calculator', url: 'calculator', icon: Calculator },
-]
 
 // Language configuration
 const languageOptions = [
@@ -52,10 +49,16 @@ const themeOptions = [
 
 interface AppSidebarProps {
   showDashboard: boolean
+  sidebarSettings: Setting
 }
 
-export function AppSidebar({ showDashboard }: AppSidebarProps) {
+export function AppSidebar({ sidebarSettings, showDashboard }: AppSidebarProps) {
   const { setTheme } = useTheme()
+
+  const menuItems = [
+    { title: sidebarSettings.homeLink, url: 'hero', icon: Home },
+    { title: sidebarSettings.calculatorLink, url: 'calculator', icon: Calculator },
+  ]
 
   const handleLanguageChange = async (langCode: (typeof languageOptions)[number]['code']) => {
     // @todo - implement error handling: Errors may occur when changing user locale. Include retry logic or fallback options.
@@ -100,14 +103,14 @@ export function AppSidebar({ showDashboard }: AppSidebarProps) {
     <Sidebar variant="inset" collapsible="offcanvas">
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>DeloFrame</SidebarGroupLabel>
+          <SidebarGroupLabel>{sidebarSettings.primaryGroup}</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>{renderMenuItems()}</SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
 
         <SidebarGroup>
-          <SidebarGroupLabel>Settings</SidebarGroupLabel>
+          <SidebarGroupLabel>{sidebarSettings.secondaryGroup}</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem>
@@ -115,7 +118,7 @@ export function AppSidebar({ showDashboard }: AppSidebarProps) {
                   <DropdownMenuTrigger asChild>
                     <SidebarMenuButton className="cursor-pointer">
                       <Globe />
-                      <span>Language</span>
+                      <span>{sidebarSettings.languageSwitcher}</span>
                       <ChevronDown className="ml-auto h-4 w-4" />
                     </SidebarMenuButton>
                   </DropdownMenuTrigger>
@@ -133,7 +136,7 @@ export function AppSidebar({ showDashboard }: AppSidebarProps) {
                   <DropdownMenuTrigger asChild>
                     <SidebarMenuButton className="cursor-pointer">
                       <Calendar />
-                      <span>Theme</span>
+                      <span>{sidebarSettings.themeSwitcher}</span>
                       <ChevronDown className="ml-auto h-4 w-4" />
                     </SidebarMenuButton>
                   </DropdownMenuTrigger>

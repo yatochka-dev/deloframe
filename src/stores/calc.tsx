@@ -25,7 +25,7 @@ interface ICalcStore {
   params: Record<CategoryID, Param[]>
   addParam: (param: { category: CategoryID; id: number; customAmount?: number }) => void
   removeParam: (param: { category: CategoryID; id: number; isMandatory: boolean }) => void
-  changeParamAmount: (param: { category: CategoryID; id: number; customAmount: number }) => void
+  changeParamAmount: (param: { category: CategoryID; id: number; customAmount?: number }) => void
 }
 
 function verifyParams(params: Record<CategoryID, Param[]>) {

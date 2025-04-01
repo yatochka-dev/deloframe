@@ -33,7 +33,8 @@ async function fetchHeroSection(locale: LocaleCode) {
  */
 export default async function Landing({ params }: { params: Promise<{ locale: string }> }) {
   const localeParams = await params
-  const hero = await fetchHeroSection(z.enum(['he', 'ru']).default('ru').parse(localeParams.locale))
+  const locale = z.enum(['he', 'ru']).default('ru').parse(localeParams.locale)
+  const hero = await fetchHeroSection(locale)
 
   return (
     <div dir={localeParams.locale === 'he' ? 'rtl' : 'ltr'}>
@@ -45,7 +46,7 @@ export default async function Landing({ params }: { params: Promise<{ locale: st
         )}
       </Section>
       <Section name="calculator">
-        <CalculatorMain />
+        <CalculatorMain locale={locale} />
       </Section>
     </div>
   )

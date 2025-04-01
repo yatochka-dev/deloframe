@@ -5,9 +5,10 @@ import { Dialog, DialogContent, DialogTitle, DialogTrigger } from '@/components/
 import { Button } from '@/components/ui/button'
 import { fetchParameters } from '@/lib/fetchParameters'
 import { notFound } from 'next/navigation'
+import { LocaleCode } from '@payload-config'
 
-export default async function CalculatorMain() {
-  const data = await fetchParameters()
+export default async function CalculatorMain({ locale }: { locale: LocaleCode }) {
+  const data = await fetchParameters(locale)
 
   return (
     <section
