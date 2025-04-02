@@ -14,7 +14,7 @@ interface InitialInput {
   length: number
 }
 
-interface Param {
+export interface Param {
   id: number
   customAmount?: number
 }

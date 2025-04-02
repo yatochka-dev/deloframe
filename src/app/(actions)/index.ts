@@ -1,50 +1,28 @@
 'use server'
 import { z } from 'zod'
-import { storiesEnum } from '@/shared'
 import { actionClient } from '@/lib/safe-action'
 import { evaluate } from 'mathjs'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
-
-/**
- * Module to handle building calculations.
- * Provides a schema for input validation and performs various calculations.
- */
-const calculationSchema = z.object({
-  width: z.number(),
-  length: z.number(),
-  stories: storiesEnum,
-  params: z.object({
-    id: z.number(),
-    amount: z.number().optional(),
-  }),
-})
-
-const outputSchema = z.object({
-  buildingArea: z.number(),
-  buildingAreaOneStory: z.number(),
-  buildingAreaTwoStory: z.number(),
-  usableAreaOneStory: z.number(),
-  usableAreaTwoStory: z.number(),
-  weight: z.number(),
-  weightOnTheFoundation: z.number(),
-  houseHeatLoss: z.number(),
-  recommendedMinHeatingPower: z.number(),
-  heatingCosts: z.number(),
-  cost: z.number(),
-  costPerSquareMeter: z.number(),
-})
+import { calculationSchema, outputSchema } from '@/app/(actions)/schemas'
+import { fetchCalculatorSettings } from '@/app/(actions)/util'
+import parseParameters from './parseParameters'
 
 // Function to perform calculations based on the given dimensions and stories
 export const calculateBuildingMetrics = actionClient
   .schema(calculationSchema)
   .outputSchema(outputSchema)
   .action(async ({ parsedInput }) => {
-    const dimensions = {
-      width: parsedInput.width,
+    if (!(parsedInput.stories in ['1', '2'])) throw new Error('Add parsing logic idk')
+
+    const twoStories: boolean = parsedInput.stories === '2'
+    const settings = await fetchCalculatorSettings()
+
+    const parsedParams = await parseParameters(parsedInput.params, {
       length: parsedInput.length,
+      width: parsedInput.width,
       stories: parsedInput.stories,
-    }
+    })
 
     const calculateMetric = (expression: string, values: typeof dimensions) => {
       try {
@@ -52,27 +30,43 @@ export const calculateBuildingMetrics = actionClient
       } catch (error) {
         // @todo - implement error handling: Handle potential errors from the evaluate function,
         // such as invalid expressions or types in the calculation.
-        throw new Error(`Evaluation error: ${error}`)
+        throw new Error(`Evaluation error: ${error} ${expression}`)
       }
     }
 
+    const dimensions = {
+      width: parsedInput.width,
+      length: parsedInput.length,
+      stories: parseInt(z.enum(['1', '2']).parse(parsedInput.stories)),
+      totalParameterWeight: parsedParams.totalWeight,
+      totalParameterHeatLoss: parsedParams.totalHeatLoss9,
+      totalParameterHeatLoss39: parsedParams.totalHeatLoss39,
+      totalParameterPrice: parsedParams.totalPrice,
+    }
     return {
-      buildingArea: calculateMetric('(width/2+1)*(length/2+1)*stories', dimensions),
-      buildingAreaOneStory: calculateMetric('(width/2+1)*(length/2+1)', dimensions),
-      buildingAreaTwoStory: calculateMetric('(width/2+1)*(length/2+1)*2', dimensions),
-      usableAreaOneStory: calculateMetric('(width/2+1)*(length/2+1)*0.5', dimensions),
-      usableAreaTwoStory: calculateMetric('(width/2+1)*(length/2+1)*1.5', dimensions),
-      weight: calculateMetric('(width/2+1)*(length/2+1)*stories*0.5', dimensions),
-      weightOnTheFoundation: calculateMetric('(width/2+1)*(length/2+1)*0.5', dimensions),
-      houseHeatLoss: calculateMetric('(width/2+1)*(length/2+1)*stories*0.5', dimensions),
-      recommendedMinHeatingPower: calculateMetric(
-        '(width/2+1)*(length/2+1)*stories*0.5',
+      buildingArea: calculateMetric(
+        twoStories
+          ? settings.formulas.buildingArea.twoStories
+          : settings.formulas.buildingArea.oneStory,
         dimensions,
       ),
-      heatingCosts: calculateMetric('(width/2+1)*(length/2+1)*stories*0.5', dimensions),
-      cost: calculateMetric('(width/2+1)*(length/2+1)*stories*0.5', dimensions),
-      costPerSquareMeter: calculateMetric('(width/2+1)*(length/2+1)*stories*0.5', dimensions),
-    }
+      usableArea: calculateMetric(
+        twoStories
+          ? settings.formulas.usableArea.twoStories
+          : settings.formulas.usableArea.oneStory,
+        dimensions,
+      ),
+      weight: calculateMetric(settings.formulas.weight, dimensions),
+      weightOnTheFoundation: calculateMetric(settings.formulas.weightOnTheFoundation, dimensions),
+      houseHeatLoss: calculateMetric(settings.formulas.houseHeatLoss, dimensions),
+      recommendedMinHeatingPower: calculateMetric(
+        settings.formulas.recommendedMinHeatingPower,
+        dimensions,
+      ),
+      heatingCosts: calculateMetric(settings.formulas.heatingCosts, dimensions),
+      cost: calculateMetric(settings.formulas.cost, dimensions),
+      costPerSquareMeter: calculateMetric(settings.formulas.costPerSquareMeter, dimensions),
+    } as z.infer<typeof outputSchema>
   })
 
 /**

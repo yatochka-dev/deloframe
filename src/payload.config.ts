@@ -13,6 +13,7 @@ import { BaseSettings } from '@/globals/settings'
 import Parameters from '@/collections/Parameter'
 import Categories from '@/collections/Category'
 import { HeroSectionSettings } from '@/globals/hero'
+import { CalculatorSettings } from '@/globals/calculatorSettings'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -43,7 +44,7 @@ export default buildConfig({
     },
   }),
 
-  globals: [BaseSettings, HeroSectionSettings],
+  globals: [BaseSettings, HeroSectionSettings, CalculatorSettings],
   sharp,
   localization: {
     // @ts-expect-error

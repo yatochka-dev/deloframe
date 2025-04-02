@@ -35,7 +35,7 @@ const ParametersDrawer = ({ children }: ParametersDrawerProps) => {
         </div>
 
         <DrawerFooter>
-          <DrawerClose>
+          <DrawerClose asChild>
             <Button variant="outline" className={'w-full'}>
               Close
             </Button>

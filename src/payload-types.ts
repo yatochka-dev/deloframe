@@ -93,10 +93,12 @@ export interface Config {
   globals: {
     settings: Setting;
     herosection: Herosection;
+    calculatorSettings: CalculatorSetting;
   };
   globalsSelect: {
     settings: SettingsSelect<false> | SettingsSelect<true>;
     herosection: HerosectionSelect<false> | HerosectionSelect<true>;
+    calculatorSettings: CalculatorSettingsSelect<false> | CalculatorSettingsSelect<true>;
   };
   locale: 'he' | 'ru';
   user: User & {
@@ -183,37 +185,37 @@ export interface Parameter {
   pricePer: number;
   weight: number;
   heatLoss: number;
-  matrices: {
-    amount: {
-      oneStory: string;
-      twoStory: string;
-      oneStoryPF: string;
-      twoStoryPF: string;
+  matrices?: {
+    amount?: {
+      oneStory?: string | null;
+      twoStory?: string | null;
+      oneStoryPF?: string | null;
+      twoStoryPF?: string | null;
     };
-    price: {
-      oneStory: string;
-      twoStory: string;
-      oneStoryPF: string;
-      twoStoryPF: string;
+    price?: {
+      oneStory?: string | null;
+      twoStory?: string | null;
+      oneStoryPF?: string | null;
+      twoStoryPF?: string | null;
     };
-    weight: {
-      oneStory: string;
-      twoStory: string;
-      oneStoryPF: string;
-      twoStoryPF: string;
+    weight?: {
+      oneStory?: string | null;
+      twoStory?: string | null;
+      oneStoryPF?: string | null;
+      twoStoryPF?: string | null;
     };
-    heatLoss: {
-      below9deg: {
-        oneStory: string;
-        twoStory: string;
-        oneStoryPF: string;
-        twoStoryPF: string;
+    heatLoss?: {
+      below9deg?: {
+        oneStory?: string | null;
+        twoStory?: string | null;
+        oneStoryPF?: string | null;
+        twoStoryPF?: string | null;
       };
-      below39deg: {
-        oneStory: string;
-        twoStory: string;
-        oneStoryPF: string;
-        twoStoryPF: string;
+      below39deg?: {
+        oneStory?: string | null;
+        twoStory?: string | null;
+        oneStoryPF?: string | null;
+        twoStoryPF?: string | null;
       };
     };
   };
@@ -474,6 +476,34 @@ export interface Herosection {
   createdAt?: string | null;
 }
 /**
+ * Stores the formulas for the calculator
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "calculatorSettings".
+ */
+export interface CalculatorSetting {
+  id: number;
+  formulas?: {
+    buildingArea?: {
+      oneStory?: string | null;
+      twoStories?: string | null;
+    };
+    usableArea?: {
+      oneStory?: string | null;
+      twoStories?: string | null;
+    };
+    weight?: string | null;
+    weightOnTheFoundation?: string | null;
+    houseHeatLoss?: string | null;
+    recommendedMinHeatingPower?: string | null;
+    heatingCosts?: string | null;
+    cost?: string | null;
+    costPerSquareMeter?: string | null;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "settings_select".
  */
@@ -496,6 +526,38 @@ export interface HerosectionSelect<T extends boolean = true> {
   title?: T;
   subtitle?: T;
   cta?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "calculatorSettings_select".
+ */
+export interface CalculatorSettingsSelect<T extends boolean = true> {
+  formulas?:
+    | T
+    | {
+        buildingArea?:
+          | T
+          | {
+              oneStory?: T;
+              twoStories?: T;
+            };
+        usableArea?:
+          | T
+          | {
+              oneStory?: T;
+              twoStories?: T;
+            };
+        weight?: T;
+        weightOnTheFoundation?: T;
+        houseHeatLoss?: T;
+        recommendedMinHeatingPower?: T;
+        heatingCosts?: T;
+        cost?: T;
+        costPerSquareMeter?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

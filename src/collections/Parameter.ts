@@ -2,6 +2,7 @@ import { CollectionConfig } from 'payload'
 import admin from '@/collections/access/admin'
 import all from '@/collections/access/all'
 import type { Category, Parameter } from '@/payload-types'
+import { createFormulaField } from '@/lib/fields'
 
 export type ParameterData = Parameter & {
   category: Category
@@ -61,149 +62,49 @@ export const Parameters: CollectionConfig = {
           name: 'amount',
           label: 'Amount',
           type: 'group',
-
           fields: [
-            {
-              name: 'oneStory',
-              label: 'One Story',
-              type: 'text',
-              required: true,
-              defaultValue: '(0)',
-            },
-            {
-              name: 'twoStory',
-              label: 'Two Story',
-              type: 'text',
-              required: true,
-              defaultValue: '(0)',
-            },
-            {
-              name: 'oneStoryPF',
-              label: 'One Story/PF',
-              type: 'text',
-              required: true,
-              defaultValue: '(0)',
-            },
-            {
-              name: 'twoStoryPF',
-              label: 'Two Story/PF',
-              type: 'text',
-              required: true,
-              defaultValue: '(0)',
-            },
+            createFormulaField('oneStory', 'One Story'),
+            createFormulaField('twoStory', 'Two Story'),
+            createFormulaField('oneStoryPF', 'One Story/PF'),
+            createFormulaField('twoStoryPF', 'Two Story/PF'),
           ],
         },
         {
           name: 'price',
           label: 'Price',
           type: 'group',
-
           fields: [
-            {
-              name: 'oneStory',
-              label: 'One Story',
-              type: 'text',
-              required: true,
-              defaultValue: '(0)',
-            },
-            {
-              name: 'twoStory',
-              label: 'Two Story',
-              type: 'text',
-              required: true,
-              defaultValue: '(0)',
-            },
-            {
-              name: 'oneStoryPF',
-              label: 'One Story/PF',
-              type: 'text',
-              required: true,
-              defaultValue: '(0)',
-            },
-            {
-              name: 'twoStoryPF',
-              label: 'Two Story/PF',
-              type: 'text',
-              required: true,
-              defaultValue: '(0)',
-            },
+            createFormulaField('oneStory', 'One Story'),
+            createFormulaField('twoStory', 'Two Story'),
+            createFormulaField('oneStoryPF', 'One Story/PF'),
+            createFormulaField('twoStoryPF', 'Two Story/PF'),
           ],
         },
         {
           name: 'weight',
           label: 'Weight',
           type: 'group',
-
           fields: [
-            {
-              name: 'oneStory',
-              label: 'One Story',
-              type: 'text',
-              required: true,
-              defaultValue: '(0)',
-            },
-            {
-              name: 'twoStory',
-              label: 'Two Story',
-              type: 'text',
-              required: true,
-              defaultValue: '(0)',
-            },
-            {
-              name: 'oneStoryPF',
-              label: 'One Story/PF',
-              type: 'text',
-              required: true,
-              defaultValue: '(0)',
-            },
-            {
-              name: 'twoStoryPF',
-              label: 'Two Story/PF',
-              type: 'text',
-              required: true,
-              defaultValue: '(0)',
-            },
+            createFormulaField('oneStory', 'One Story'),
+            createFormulaField('twoStory', 'Two Story'),
+            createFormulaField('oneStoryPF', 'One Story/PF'),
+            createFormulaField('twoStoryPF', 'Two Story/PF'),
           ],
         },
         {
           name: 'heatLoss',
           label: 'Heat Loss',
           type: 'group',
-
           fields: [
             {
               name: 'below9deg',
               label: 'Below 9 Degrees',
               type: 'group',
               fields: [
-                {
-                  name: 'oneStory',
-                  label: 'One Story',
-                  type: 'text',
-                  required: true,
-                  defaultValue: '(0)',
-                },
-                {
-                  name: 'twoStory',
-                  label: 'Two Story',
-                  type: 'text',
-                  required: true,
-                  defaultValue: '(0)',
-                },
-                {
-                  name: 'oneStoryPF',
-                  label: 'One Story/PF',
-                  type: 'text',
-                  required: true,
-                  defaultValue: '(0)',
-                },
-                {
-                  name: 'twoStoryPF',
-                  label: 'Two Story/PF',
-                  type: 'text',
-                  required: true,
-                  defaultValue: '(0)',
-                },
+                createFormulaField('oneStory', 'One Story'),
+                createFormulaField('twoStory', 'Two Story'),
+                createFormulaField('oneStoryPF', 'One Story/PF'),
+                createFormulaField('twoStoryPF', 'Two Story/PF'),
               ],
             },
             {
@@ -211,34 +112,10 @@ export const Parameters: CollectionConfig = {
               label: 'Below 39 Degrees',
               type: 'group',
               fields: [
-                {
-                  name: 'oneStory',
-                  label: 'One Story',
-                  type: 'text',
-                  required: true,
-                  defaultValue: '(0)',
-                },
-                {
-                  name: 'twoStory',
-                  label: 'Two Story',
-                  type: 'text',
-                  required: true,
-                  defaultValue: '(0)',
-                },
-                {
-                  name: 'oneStoryPF',
-                  label: 'One Story/PF',
-                  type: 'text',
-                  required: true,
-                  defaultValue: '(0)',
-                },
-                {
-                  name: 'twoStoryPF',
-                  label: 'Two Story/PF',
-                  type: 'text',
-                  required: true,
-                  defaultValue: '(0)',
-                },
+                createFormulaField('oneStory', 'One Story'),
+                createFormulaField('twoStory', 'Two Story'),
+                createFormulaField('oneStoryPF', 'One Story/PF'),
+                createFormulaField('twoStoryPF', 'Two Story/PF'),
               ],
             },
           ],
