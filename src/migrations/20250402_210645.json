@@ -1,5 +1,5 @@
 {
-  "id": "a0895379-cede-40ea-a25d-fdbec34d115a",
+  "id": "7c4de263-2762-4ecc-a9c2-93c40cae6210",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -1712,6 +1712,345 @@
           "name": "herosection_locales_parent_id_fk",
           "tableFrom": "herosection_locales",
           "tableTo": "herosection",
+          "columnsFrom": [
+            "_parent_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.calculator_settings": {
+      "name": "calculator_settings",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "formulas_building_area_one_story": {
+          "name": "formulas_building_area_one_story",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'(0)'"
+        },
+        "formulas_building_area_two_stories": {
+          "name": "formulas_building_area_two_stories",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'(0)'"
+        },
+        "formulas_usable_area_one_story": {
+          "name": "formulas_usable_area_one_story",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'(0)'"
+        },
+        "formulas_usable_area_two_stories": {
+          "name": "formulas_usable_area_two_stories",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'(0)'"
+        },
+        "formulas_weight": {
+          "name": "formulas_weight",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'(0)'"
+        },
+        "formulas_weight_on_the_foundation": {
+          "name": "formulas_weight_on_the_foundation",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'(0)'"
+        },
+        "formulas_house_heat_loss": {
+          "name": "formulas_house_heat_loss",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'(0)'"
+        },
+        "formulas_recommended_min_heating_power": {
+          "name": "formulas_recommended_min_heating_power",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'(0)'"
+        },
+        "formulas_heating_costs": {
+          "name": "formulas_heating_costs",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'(0)'"
+        },
+        "formulas_cost": {
+          "name": "formulas_cost",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'(0)'"
+        },
+        "formulas_cost_per_square_meter": {
+          "name": "formulas_cost_per_square_meter",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'(0)'"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp(3) with time zone",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp(3) with time zone",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.calculator": {
+      "name": "calculator",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp(3) with time zone",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp(3) with time zone",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.calculator_locales": {
+      "name": "calculator_locales",
+      "schema": "",
+      "columns": {
+        "main_inputs_length": {
+          "name": "main_inputs_length",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "main_inputs_width": {
+          "name": "main_inputs_width",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "main_inputs_stories_label": {
+          "name": "main_inputs_stories_label",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "main_inputs_stories_one_story": {
+          "name": "main_inputs_stories_one_story",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "main_inputs_stories_two_story": {
+          "name": "main_inputs_stories_two_story",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "main_inputs_stories_one_story_p_f": {
+          "name": "main_inputs_stories_one_story_p_f",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "main_inputs_stories_two_story_p_f": {
+          "name": "main_inputs_stories_two_story_p_f",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "main_buttons_advanced_mode": {
+          "name": "main_buttons_advanced_mode",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "main_buttons_reset": {
+          "name": "main_buttons_reset",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "main_output_building_area": {
+          "name": "main_output_building_area",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "main_output_usable_area": {
+          "name": "main_output_usable_area",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "main_output_building_weight": {
+          "name": "main_output_building_weight",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "main_output_weight_on_the_foundation": {
+          "name": "main_output_weight_on_the_foundation",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "main_output_heat_loss": {
+          "name": "main_output_heat_loss",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "main_output_min_heating_power": {
+          "name": "main_output_min_heating_power",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "main_output_heating_costs": {
+          "name": "main_output_heating_costs",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "main_output_price": {
+          "name": "main_output_price",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "main_output_price_per_sq2": {
+          "name": "main_output_price_per_sq2",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "main_building_polygon_width": {
+          "name": "main_building_polygon_width",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "main_building_polygon_length": {
+          "name": "main_building_polygon_length",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "main_building_polygon_stories_one_story": {
+          "name": "main_building_polygon_stories_one_story",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "main_building_polygon_stories_two_story": {
+          "name": "main_building_polygon_stories_two_story",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "_locale": {
+          "name": "_locale",
+          "type": "_locales",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "_parent_id": {
+          "name": "_parent_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {
+        "calculator_locales_locale_parent_id_unique": {
+          "name": "calculator_locales_locale_parent_id_unique",
+          "columns": [
+            {
+              "expression": "_locale",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "_parent_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": true,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "calculator_locales_parent_id_fk": {
+          "name": "calculator_locales_parent_id_fk",
+          "tableFrom": "calculator_locales",
+          "tableTo": "calculator",
           "columnsFrom": [
             "_parent_id"
           ],
