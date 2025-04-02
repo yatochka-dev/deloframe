@@ -753,7 +753,7 @@ const TwoStoryBuilding = () => {
 const Building = () => {
   const stories = useCalcStore((s) => s.initialInput.stories)
   return (
-    <div className={'w-full block justify-self-center'}>
+    <div className={'w-full block justify-self-center select-none'}>
       {stories === '1' && <OneStoryBuilding />}
       {stories === '2' && <TwoStoryBuilding />}
     </div>
