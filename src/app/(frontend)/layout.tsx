@@ -31,7 +31,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
           disableTransitionOnChange
         >
           {/*<Header globals={globals} />*/}
-          <SidebarProvider>{children}</SidebarProvider>
+          {children}
         </ThemeProvider>
       </body>
     </html>

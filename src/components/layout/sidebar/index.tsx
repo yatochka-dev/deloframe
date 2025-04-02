@@ -31,6 +31,7 @@ import { useTheme } from 'next-themes'
 import { Link as ScrollTo } from 'react-scroll'
 import { changeUserLocale } from '@/app/(actions)'
 import { Setting } from '@/payload-types'
+import { LocaleCode } from '@payload-config'
 
 // Menu configuration
 
@@ -49,7 +50,7 @@ const themeOptions = [
 
 interface AppSidebarProps {
   showDashboard: boolean
-  sidebarSettings: Setting
+  sidebarSettings: Setting & { locale: LocaleCode }
 }
 
 export function AppSidebar({ sidebarSettings, showDashboard }: AppSidebarProps) {
@@ -100,7 +101,11 @@ export function AppSidebar({ sidebarSettings, showDashboard }: AppSidebarProps) 
     ))
 
   return (
-    <Sidebar variant="inset" collapsible="offcanvas">
+    <Sidebar
+      variant="inset"
+      collapsible="offcanvas"
+      // side={sidebarSettings.locale === 'he' ? 'left' : 'right'}
+    >
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel>{sidebarSettings.primaryGroup}</SidebarGroupLabel>

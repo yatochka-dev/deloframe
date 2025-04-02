@@ -21,19 +21,19 @@ type CategoryParameters = Record<CategoryID, ParameterData[]>
 
 const ParametersCategorySchema = z.object({
   parsedParamsMain: z.record(
-    z.number(),
+    z.string(),
     z.array(
       z.object({
-        id: z.string(),
+        id: z.number(),
         name: z.string(),
       }),
     ),
   ),
   parsedParamsOptional: z.record(
-    z.number(),
+    z.string(),
     z.array(
       z.object({
-        id: z.string(),
+        id: z.number(),
         name: z.string(),
       }),
     ),
@@ -57,7 +57,7 @@ const CategorySection = ({
   return (
     <div className={'space-y-3'}>
       <h2 className={'text-xl font-bold'}>{title}</h2>
-      <div className={'grid gap-4 grid-cols-3'}>
+      <div className={'grid gap-4 grid-cols-2 md:grid-cols-5'}>
         {categories.map((category) => {
           if (isMandatory) {
             const paramId = params[category.id][0].id

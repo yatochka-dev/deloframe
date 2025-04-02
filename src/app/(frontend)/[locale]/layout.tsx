@@ -2,7 +2,7 @@ import { headers } from 'next/headers'
 import { getPayload } from 'payload'
 import config from '@payload-config'
 import { AppSidebar } from '@/components/layout/sidebar'
-import { SidebarInset, SidebarTrigger } from '@/components/ui/sidebar'
+import { SidebarInset, SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
 import React, { ReactNode } from 'react'
 import { localesEnum } from '@/shared'
 
@@ -32,16 +32,22 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
 
   return (
     <>
-      <AppSidebar
-        sidebarSettings={sidebarSettings}
-        showDashboard={authStatus.user?.roles?.includes('admin') ?? false}
-      />
-      <SidebarInset>
-        <main className={'min-h-screen flex justify-center flex-col w-full p-2'}>
-          {children}
-          <SidebarTrigger />
-        </main>
-      </SidebarInset>
+      <SidebarProvider>
+        <AppSidebar
+          sidebarSettings={{
+            ...sidebarSettings,
+            locale: locale,
+          }}
+          showDashboard={authStatus.user?.roles?.includes('admin') ?? false}
+        />
+
+        <SidebarInset>
+          <main className={'min-h-screen flex justify-center flex-col w-full p-2'}>
+            <SidebarTrigger />
+            {children}
+          </main>
+        </SidebarInset>
+      </SidebarProvider>
     </>
   )
 }

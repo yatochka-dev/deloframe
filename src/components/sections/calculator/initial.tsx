@@ -52,7 +52,7 @@ const InitialInputs = () => {
 
   return (
     <Form {...form}>
-      <form className={'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'}>
+      <form className={'flex flex-col gap-4'}>
         <StoriesField control={form.control} />
         <NumberField name="width" label="Width" control={form.control} />
         <NumberField name="length" label="Length" control={form.control} />

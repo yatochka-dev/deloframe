@@ -4,7 +4,7 @@ import { persist, createJSONStorage } from 'zustand/middleware'
 
 // Store to hold calculations related configurations and operations
 
-export const permissibleStoriesValues = [1, 2] as const
+export const permissibleStoriesValues = ['1', '2'] as const
 
 interface InitialInput {
   stories: (typeof permissibleStoriesValues)[number]
@@ -44,7 +44,7 @@ function verifyParams(params: Record<CategoryID, Param[]>) {
 const useCalcStore = create<ICalcStore>()(
   persist(
     (set) => ({
-      initialInput: { stories: 1, width: 10, length: 8 },
+      initialInput: { stories: '1', width: 10, length: 8 },
 
       updateInitialInput: (input) =>
         set((state) => ({
