@@ -4,53 +4,25 @@ import Parameters from '@/components/sections/calculator/parameters'
 import { fetchParameters } from '@/lib/fetchParameters'
 import { LocaleCode } from '@payload-config'
 import Building from '@/components/sections/calculator/building'
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from '@/components/ui/drawer'
-import { Button } from '@/components/ui/button'
+import ParametersDrawer from '@/components/sections/calculator/parameters-drawer'
+import ResetCalculatorButton from '@/components/sections/calculator/reset-calculator-button'
 export default async function CalculatorMain({ locale }: { locale: LocaleCode }) {
   const data = await fetchParameters(locale)
 
   return (
-    <section
-      id="calc"
-      className="min-h-screen h-full w-full flex justify-center px-5 mx-auto py-16"
-    >
-      <div className="bg-card w-full p-4 flex rounded-md shadow-lg">
-        <div className="w-1/3">
+    <section className="min-h-screen h-full w-full flex justify-center px-5 mx-auto py-16">
+      <div className="bg-card w-full p-4 flex rounded-md shadow-lg flex flex-col lg:flex-row">
+        <div className="w-full lg:max-w-1/3">
           <InitialInputs />
-          <Drawer>
-            <DrawerTrigger>Open</DrawerTrigger>
-            <DrawerContent className={'max-h-[85vh]'}>
-              <DrawerHeader>
-                <DrawerTitle>Advanced Configuration</DrawerTitle>
-                <DrawerDescription>Not for beginners</DrawerDescription>
-              </DrawerHeader>
-
-              <div className="px-4 overflow-y-auto max-h-[calc(85vh-180px)]">
-                <div className="max-md:px-2 md:container mx-auto py-5">
-                  <Parameters {...data} />
-                </div>
-              </div>
-
-              <DrawerFooter>
-                <DrawerClose>
-                  <Button variant="outline" className={'w-full'}>
-                    Close
-                  </Button>
-                </DrawerClose>
-              </DrawerFooter>
-            </DrawerContent>
-          </Drawer>
+          <ParametersDrawer>
+            <Parameters {...data} />
+          </ParametersDrawer>
+          <ResetCalculatorButton
+            mainParams={data.parsedParamsMain}
+            mainCategories={data.mandatoryCategories}
+          />
         </div>
-        <div className="w-2/3 max-w-1/2 flex justify-center items-center">
+        <div className="w-full lg:max-w-2/3 flex justify-center md:px-8">
           <Building />
         </div>
       </div>

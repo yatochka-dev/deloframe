@@ -2,12 +2,11 @@
 import React from 'react'
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
-import { SwitchCalculationModeButton } from '@/components/sections/calculator/switch-calculation-mode-button'
 import ParametersCategory from '@/components/sections/calculator/parameters-category'
 import useCalcStore from '@/stores/calc'
 import { z } from 'zod'
-import { CategoryID, ParameterData } from '@/collections/Parameter'
 import { Category } from '@/payload-types'
+import { CategoryParameters } from '@/lib/fetchParameters'
 
 // Types
 interface ParametersProps {
@@ -16,8 +15,6 @@ interface ParametersProps {
   mandatoryCategories: Category[]
   optionalCategories: Category[]
 }
-
-type CategoryParameters = Record<CategoryID, ParameterData[]>
 
 const ParametersCategorySchema = z.object({
   parsedParamsMain: z.record(
@@ -106,7 +103,6 @@ const Parameters = ({
 
   return (
     <div className="flex flex-col gap-4">
-      <SwitchCalculationModeButton />
       <CategorySection
         title="Required categories"
         categories={mandatoryCategories}

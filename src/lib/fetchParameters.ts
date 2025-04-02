@@ -3,6 +3,8 @@ import config, { LocaleCode } from '@payload-config'
 import { CategoryID, ParameterData } from '@/collections/Parameter'
 import { Category } from '@/payload-types'
 
+export type CategoryParameters = Record<CategoryID, ParameterData[]>
+
 /**
  * Fetches parameters from the parameters collection and organizes them by category.
  *

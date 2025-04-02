@@ -1,6 +1,8 @@
 import { CategoryID } from '@/collections/Parameter'
+import { CategoryParameters } from '@/lib/fetchParameters'
 import { create } from 'zustand'
 import { persist, createJSONStorage } from 'zustand/middleware'
+import { Category } from '@/payload-types'
 
 // Store to hold calculations related configurations and operations
 
@@ -26,6 +28,7 @@ interface ICalcStore {
   addParam: (param: { category: CategoryID; id: number; customAmount?: number }) => void
   removeParam: (param: { category: CategoryID; id: number; isMandatory: boolean }) => void
   changeParamAmount: (param: { category: CategoryID; id: number; customAmount?: number }) => void
+  resetInitialValues: (mainParams: CategoryParameters, categories: Category[]) => void
 }
 
 function verifyParams(params: Record<CategoryID, Param[]>) {
@@ -125,6 +128,27 @@ const useCalcStore = create<ICalcStore>()(
                 : [newParam],
             },
           }
+        })
+      },
+      resetInitialValues: (mainParams, categories) => {
+        const params: Record<CategoryID, Param[]> = {}
+        for (const category of categories) {
+          const p = mainParams[category.id][0]
+          params[category.id] = [
+            {
+              id: p.id as number,
+              customAmount: undefined,
+            },
+          ]
+        }
+        set({
+          initialInput: {
+            stories: '1',
+            width: 10,
+            length: 8,
+          },
+          customConfig: false,
+          params: params,
         })
       },
     }),

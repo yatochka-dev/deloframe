@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { useEffect } from 'react'
 import useCalcStore, { permissibleStoriesValues } from '@/stores/calc'
 import {
   Form,
@@ -30,25 +30,50 @@ const schema = z.object({
 })
 
 type InitialInputValues = {
-  stories: 1 | 2
+  stories: z.infer<typeof storiesEnum>
   width: number
   length: number
 }
 
 const InitialInputs = () => {
-  const calc = useCalcStore()
+  const initialInput = useCalcStore((s) => s.initialInput)
+  const updateInitialInput = useCalcStore((s) => s.updateInitialInput)
   const form = useForm<InitialInputValues>({
     resolver: zodResolver(schema),
     defaultValues: {
-      stories: calc.initialInput.stories,
-      width: calc.initialInput.width,
-      length: calc.initialInput.length,
+      stories: initialInput.stories,
+      width: initialInput.width,
+      length: initialInput.length,
     },
   })
 
+  // Update store when form changes
   form.watch((value) => {
-    calc.updateInitialInput(value)
+    updateInitialInput({
+      stories: value.stories,
+      width: value.width,
+      length: value.length,
+    })
   })
+
+  useEffect(() => {
+    const subscription = useCalcStore.subscribe((state) => {
+      const { stories, width, length } = state.initialInput
+      // Compare current form values with store values
+      if (
+        form.getValues('stories') !== stories ||
+        form.getValues('width') !== width ||
+        form.getValues('length') !== length
+      ) {
+        form.reset({
+          stories,
+          width,
+          length,
+        })
+      }
+    })
+    return () => subscription()
+  }, [form])
 
   return (
     <Form {...form}>
@@ -82,7 +107,6 @@ const StoriesField = ({ control }: { control: Control<InitialInputValues> }) => 
             </SelectContent>
           </Select>
         </FormControl>
-        {/*<FormDescription>No Desc</FormDescription>*/}
         <FormMessage />
       </FormItem>
     )}

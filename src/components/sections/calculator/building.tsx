@@ -21,49 +21,49 @@ const OneStoryBuilding = () => {
       <polygon
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         points="465.577,297.254 237.232,380.365 237.232,291.633 
                       465.577,208.522 "
       ></polygon>
       <polygon
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         points="465.577,208.522 237.232,291.633 161.117,189.724 
                       389.462,106.613 "
       ></polygon>
       <polygon
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         points="306.972,340.615 268.914,354.467 268.914,297.001 
                       306.972,283.15 "
       ></polygon>
       <polygon
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         points="370.434,331.883 332.376,345.735 332.376,273.903 
                       370.434,260.051 "
       ></polygon>
       <polygon
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         points="437.034,293.276 398.977,307.128 398.977,249.663 
                       437.034,235.811 "
       ></polygon>
       <polygon
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         points="301.897,336.716 273.988,346.874 273.988,300.901 
                       301.897,290.743 "
       ></polygon>
       <line
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         x1="287.943"
         y1="295.822"
         x2="287.943"
@@ -72,7 +72,7 @@ const OneStoryBuilding = () => {
       <line
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         x1="273.988"
         y1="312.394"
         x2="301.897"
@@ -87,7 +87,7 @@ const OneStoryBuilding = () => {
       <line
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         x1="418.005"
         y1="248.483"
         x2="418.005"
@@ -96,7 +96,7 @@ const OneStoryBuilding = () => {
       <line
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         x1="404.051"
         y1="265.055"
         x2="431.96"
@@ -105,28 +105,28 @@ const OneStoryBuilding = () => {
       <polygon
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         points="365.359,333.73 337.45,343.888 337.45,277.803 
                       365.359,267.645 "
       ></polygon>
       <polygon
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         points="360.285,306.844 342.525,313.309 342.525,281.703 
                       360.285,275.238 "
       ></polygon>
       <polygon
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         points="360.285,329.831 342.525,336.295 342.525,319.055 
                       360.285,312.591 "
       ></polygon>
       <line
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         x1="342.525"
         y1="293.196"
         x2="360.285"
@@ -135,7 +135,7 @@ const OneStoryBuilding = () => {
       <line
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         x1="351.405"
         y1="278.47"
         x2="351.405"
@@ -144,28 +144,28 @@ const OneStoryBuilding = () => {
       <polygon
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         points="161.207,189.724 85.002,236.225 85.002,324.957 
                       237.232,380.365 237.232,291.633 "
       ></polygon>
       <polygon
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         points="180.236,345.253 142.178,331.402 142.178,273.936 
                       180.236,287.788 "
       ></polygon>
       <polygon
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         points="175.161,337.66 147.252,327.502 147.252,281.529 
                       175.161,291.687 "
       ></polygon>
       <line
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         x1="161.207"
         y1="286.608"
         x2="161.207"
@@ -174,7 +174,7 @@ const OneStoryBuilding = () => {
       <line
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         x1="147.252"
         y1="293.023"
         x2="175.161"
@@ -183,14 +183,14 @@ const OneStoryBuilding = () => {
       <path
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         d="M175.161,241.744c0,8.728-6.248,13.529-13.954,10.724
                       c-7.707-2.805-13.954-12.154-13.954-20.882s6.248-13.529,13.954-10.724C168.914,223.667,175.161,233.017,175.161,241.744z"
       ></path>
       <path
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         d="M170.087,239.898c0,5.554-3.976,8.609-8.88,6.824
                       s-8.88-7.735-8.88-13.289s3.976-8.609,8.88-6.824S170.087,234.344,170.087,239.898z"
       ></path>
@@ -282,29 +282,29 @@ const OneStoryBuilding = () => {
         x2="524.839"
         y2="332.636"
       ></line>
-      <path fill="none" strokeMiterlimit="10" stroke-dasharray="12,6" d="M465.577,134.317"></path>
-      <path fill="none" strokeMiterlimit="10" stroke-dasharray="12,6" d="M465.577,134.317"></path>
-      <path fill="none" strokeMiterlimit="10" stroke-dasharray="12,6" d="M237.232,291.633"></path>
+      <path fill="none" strokeMiterlimit="10" strokeDasharray="12,6" d="M465.577,134.317"></path>
+      <path fill="none" strokeMiterlimit="10" strokeDasharray="12,6" d="M465.577,134.317"></path>
+      <path fill="none" strokeMiterlimit="10" strokeDasharray="12,6" d="M237.232,291.633"></path>
       <text
         transform="matrix(0.883 -0.3214 0 1 404.8549 394.2054)"
-        font-family="'Prosto'"
-        font-size="32.6258"
+        fontFamily="'Prosto'"
+        fontSize="32.6258"
         className="stroke-none fill-foreground "
       >
         {initialInput.length} m
       </text>
       <text
         transform="matrix(0.883 0.3214 0 1 66.1347 392.183)"
-        font-family="'Prosto'"
-        font-size="32.6258"
+        fontFamily="'Prosto'"
+        fontSize="32.6258"
         className="stroke-none fill-foreground"
       >
         {initialInput.width} m
       </text>
       <text
         transform="matrix(0 -0.9397 0.9397 0.342 555.6791 295.8103)"
-        font-family="'Prosto'"
-        font-size="32.6256"
+        fontFamily="'Prosto'"
+        fontSize="32.6256"
         className={'stroke-none fill-foreground'}
       >
         {initialInput.stories} этаж
@@ -330,63 +330,63 @@ const TwoStoryBuilding = () => {
       <polygon
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         points="465.577,297.254 237.232,380.365 237.232,207.968
                     465.577,124.857 "
       ></polygon>
       <polygon
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         points="465.577,124.857 237.232,207.968 161.117,106.059
                     389.462,22.948 "
       ></polygon>
       <polygon
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         points="306.972,340.615 268.914,354.467 268.914,297.001
                     306.972,283.15 "
       ></polygon>
       <polygon
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         points="301.897,250.517 273.988,260.675 273.988,214.703
                     301.897,204.545 "
       ></polygon>
       <polygon
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         points="370.433,331.883 332.376,345.735 332.376,273.903
                     370.433,260.051 "
       ></polygon>
       <polygon
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         points="370.433,231.319 332.376,245.17 332.376,187.705
                     370.433,173.853 "
       ></polygon>
       <polygon
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         points="306.972,254.417 268.914,268.269 268.914,210.803
                     306.972,196.951 "
       ></polygon>
       <polygon
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         points="437.034,293.276 398.977,307.128 398.977,249.663
                     437.034,235.811 "
       ></polygon>
       <line
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         x1="287.943"
         y1="209.624"
         x2="287.943"
@@ -395,7 +395,7 @@ const TwoStoryBuilding = () => {
       <line
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         x1="273.988"
         y1="226.196"
         x2="301.897"
@@ -404,14 +404,14 @@ const TwoStoryBuilding = () => {
       <polygon
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         points="365.359,227.419 337.45,237.577 337.45,191.604
                     365.359,181.446 "
       ></polygon>
       <line
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         x1="351.405"
         y1="186.525"
         x2="351.405"
@@ -420,7 +420,7 @@ const TwoStoryBuilding = () => {
       <line
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         x1="337.45"
         y1="203.098"
         x2="365.359"
@@ -429,14 +429,14 @@ const TwoStoryBuilding = () => {
       <polygon
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         points="431.96,203.178 404.051,213.336 404.051,167.364
                     431.96,157.206 "
       ></polygon>
       <line
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         x1="418.005"
         y1="162.285"
         x2="418.005"
@@ -445,7 +445,7 @@ const TwoStoryBuilding = () => {
       <line
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         x1="404.051"
         y1="178.857"
         x2="431.96"
@@ -454,14 +454,14 @@ const TwoStoryBuilding = () => {
       <polygon
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         points="301.897,336.716 273.988,346.874 273.988,300.901
                     301.897,290.743 "
       ></polygon>
       <line
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         x1="287.943"
         y1="295.822"
         x2="287.943"
@@ -470,7 +470,7 @@ const TwoStoryBuilding = () => {
       <line
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         x1="273.988"
         y1="312.394"
         x2="301.897"
@@ -479,14 +479,14 @@ const TwoStoryBuilding = () => {
       <polygon
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         points="431.96,289.377 404.051,299.535 404.051,253.562
                     431.96,243.404 "
       ></polygon>
       <line
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         x1="418.005"
         y1="248.483"
         x2="418.005"
@@ -495,7 +495,7 @@ const TwoStoryBuilding = () => {
       <line
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         x1="404.051"
         y1="265.055"
         x2="431.96"
@@ -504,35 +504,35 @@ const TwoStoryBuilding = () => {
       <polygon
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         points="437.034,207.078 398.977,220.93 398.977,163.464
                     437.034,149.612 "
       ></polygon>
       <polygon
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         points="365.359,333.73 337.45,343.888 337.45,277.803
                     365.359,267.645 "
       ></polygon>
       <polygon
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         points="360.285,306.844 342.525,313.309 342.525,281.703
                     360.285,275.238 "
       ></polygon>
       <polygon
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         points="360.285,329.831 342.525,336.295 342.525,319.055
                     360.285,312.591 "
       ></polygon>
       <line
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         x1="342.525"
         y1="293.196"
         x2="360.285"
@@ -541,7 +541,7 @@ const TwoStoryBuilding = () => {
       <line
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         x1="351.405"
         y1="278.47"
         x2="351.405"
@@ -550,35 +550,35 @@ const TwoStoryBuilding = () => {
       <polygon
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         points="161.207,106.059 85.002,152.561 85.002,324.958
                     237.232,380.365 237.232,207.968 "
       ></polygon>
       <polygon
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         points="180.236,345.253 142.178,331.402 142.178,273.936
                     180.236,287.788 "
       ></polygon>
       <polygon
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         points="175.161,251.461 147.252,241.303 147.252,195.331
                     175.161,205.489 "
       ></polygon>
       <polygon
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         points="180.236,259.055 142.178,245.203 142.178,187.738
                     180.236,201.589 "
       ></polygon>
       <line
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         x1="161.207"
         y1="200.41"
         x2="161.207"
@@ -587,7 +587,7 @@ const TwoStoryBuilding = () => {
       <line
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         x1="147.252"
         y1="206.824"
         x2="175.161"
@@ -596,14 +596,14 @@ const TwoStoryBuilding = () => {
       <polygon
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         points="175.161,337.66 147.252,327.502 147.252,281.529
                     175.161,291.687 "
       ></polygon>
       <line
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         x1="161.207"
         y1="286.608"
         x2="161.207"
@@ -612,7 +612,7 @@ const TwoStoryBuilding = () => {
       <line
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         x1="147.252"
         y1="293.023"
         x2="175.161"
@@ -621,21 +621,21 @@ const TwoStoryBuilding = () => {
       <path
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         d="M175.161,158.08c0,8.728-6.248,13.529-13.954,10.724
                     c-7.707-2.805-13.954-12.154-13.954-20.882s6.248-13.529,13.954-10.724C168.914,140.003,175.161,149.352,175.161,158.08z"
       ></path>
       <path
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         d="M170.087,156.233c0,5.554-3.976,8.609-8.88,6.824
                     s-8.88-7.735-8.88-13.289s3.976-8.609,8.88-6.824S170.087,150.679,170.087,156.233z"
       ></path>
       <line
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         x1="161.207"
         y1="142.944"
         x2="161.207"
@@ -644,7 +644,7 @@ const TwoStoryBuilding = () => {
       <line
         fill="none"
         strokeMiterlimit="10"
-        stroke-width="2"
+        strokeWidth="2"
         x1="170.087"
         y1="156.233"
         x2="152.327"
@@ -724,24 +724,24 @@ const TwoStoryBuilding = () => {
       ></line>
       <text
         transform="matrix(0.883 -0.3214 0 1 404.8568 394.205)"
-        font-family="'Prosto'"
-        font-size="32.6258"
+        fontFamily="'Prosto'"
+        fontSize="32.6258"
         className="stroke-none fill-foreground"
       >
         {initialInput.length} m
       </text>
       <text
         transform="matrix(0.883 0.3214 0 1 66.1372 392.1836)"
-        font-family="'Prosto'"
-        font-size="32.6258"
+        fontFamily="'Prosto'"
+        fontSize="32.6258"
         className="stroke-none fill-foreground"
       >
         {initialInput.width} m
       </text>
       <text
         transform="matrix(0 -0.9397 0.9397 0.342 555.6812 259.0441)"
-        font-family="'Prosto'"
-        font-size="32.6256"
+        fontFamily="'Prosto'"
+        fontSize="32.6256"
         className="stroke-none fill-foreground"
       >
         {initialInput.stories} этажа
