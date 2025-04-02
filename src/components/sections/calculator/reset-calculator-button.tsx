@@ -3,7 +3,7 @@ import React from 'react'
 import { Button } from '@/components/ui/button'
 import useCalcStore from '@/stores/calc'
 import { CategoryParameters } from '@/lib/fetchParameters'
-import { Category } from '@/payload-types'
+import { Calculator, Category } from '@/payload-types'
 import {
   Dialog,
   DialogClose,
@@ -17,9 +17,14 @@ import {
 interface ResetCalculatorButtonProps {
   mainParams: CategoryParameters
   mainCategories: Category[]
+  settings: Calculator
 }
 
-const ResetCalculatorButton = ({ mainCategories, mainParams }: ResetCalculatorButtonProps) => {
+const ResetCalculatorButton = ({
+  mainCategories,
+  mainParams,
+  settings,
+}: ResetCalculatorButtonProps) => {
   const resetStore = useCalcStore((s) => s.resetInitialValues)
 
   const handleReset = () => {
@@ -30,7 +35,7 @@ const ResetCalculatorButton = ({ mainCategories, mainParams }: ResetCalculatorBu
       <Dialog>
         <DialogTrigger asChild>
           <Button className="w-full cursor-pointer" variant="outline">
-            Reset Calculator
+            {settings.main.buttons.reset}
           </Button>
         </DialogTrigger>
         <DialogContent>

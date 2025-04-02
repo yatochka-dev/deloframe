@@ -11,16 +11,18 @@ import {
 } from '@/components/ui/drawer'
 import { Button } from '@/components/ui/button'
 import { SwitchCalculationModeButton } from '@/components/sections/calculator/switch-calculation-mode-button'
+import { Calculator } from '@/payload-types'
 
 interface ParametersDrawerProps {
   children: React.ReactNode
+  label: string
 }
 
-const ParametersDrawer = ({ children }: ParametersDrawerProps) => {
+const ParametersDrawer = ({ children, label }: ParametersDrawerProps) => {
   return (
     <Drawer>
       <DrawerTrigger asChild>
-        <Button className="w-full my-4 cursor-pointer">Open</Button>
+        <Button className="w-full my-4 cursor-pointer">{label}</Button>
       </DrawerTrigger>
       <DrawerContent className={'max-h-[85vh]'}>
         <DrawerHeader>

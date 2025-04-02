@@ -75,7 +75,7 @@ export function AppSidebar({ sidebarSettings, showDashboard }: AppSidebarProps) 
 
   const renderMenuItems = () =>
     menuItems.map((item) => (
-      <SidebarMenuItem key={item.title}>
+      <SidebarMenuItem key={item.title} className={'cursor-pointer'}>
         <SidebarMenuButton asChild>
           <ScrollTo to={item.url} smooth duration={500}>
             <item.icon />

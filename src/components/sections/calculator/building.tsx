@@ -1,12 +1,17 @@
 'use client'
 import React from 'react'
 import useCalcStore from '@/stores/calc'
+import { Calculator, CalculatorSetting } from '@/payload-types'
+import { useParams } from 'next/navigation'
 
 // Utilizing enums for better type safety and readability
-
+interface BuildingProps {
+  settings: Calculator
+}
 // Component that represents a single story of a building
-const OneStoryBuilding = () => {
+const OneStoryBuilding = ({ settings }: BuildingProps) => {
   const initialInput = useCalcStore((s) => s.initialInput)
+  const isHebrew = useParams<{ locale: string }>().locale === 'he'
   return (
     <svg
       viewBox="0 0 600 480"
@@ -291,7 +296,7 @@ const OneStoryBuilding = () => {
         fontSize="32.6258"
         className="stroke-none fill-foreground "
       >
-        {initialInput.length} m
+        {settings.main.buildingPolygon.length.replace('$$', initialInput.width.toString())}
       </text>
       <text
         transform="matrix(0.883 0.3214 0 1 66.1347 392.183)"
@@ -299,23 +304,25 @@ const OneStoryBuilding = () => {
         fontSize="32.6258"
         className="stroke-none fill-foreground"
       >
-        {initialInput.width} m
+        {settings.main.buildingPolygon.length.replace('$$', initialInput.length.toString())}
       </text>
       <text
-        transform="matrix(0 -0.9397 0.9397 0.342 555.6791 295.8103)"
+        transform={`matrix(0 -0.9397 0.9397 0.342 555.6791 ${isHebrew ? 195.8103 : 295.8103})`}
         fontFamily="'Prosto'"
         fontSize="32.6256"
         className={'stroke-none fill-foreground'}
       >
-        {initialInput.stories} этаж
+        {settings.main.buildingPolygon.stories.oneStory}
       </text>
     </svg>
   )
 }
 
 // Component that represents a two-story building
-const TwoStoryBuilding = () => {
+const TwoStoryBuilding = ({ settings }: BuildingProps) => {
   const initialInput = useCalcStore((s) => s.initialInput)
+  const isHebrew = useParams<{ locale: string }>().locale === 'he'
+
   return (
     <svg
       viewBox="0 0 600 480"
@@ -728,7 +735,7 @@ const TwoStoryBuilding = () => {
         fontSize="32.6258"
         className="stroke-none fill-foreground"
       >
-        {initialInput.length} m
+        {settings.main.buildingPolygon.length.replace('$$', initialInput.length.toString())}
       </text>
       <text
         transform="matrix(0.883 0.3214 0 1 66.1372 392.1836)"
@@ -736,26 +743,26 @@ const TwoStoryBuilding = () => {
         fontSize="32.6258"
         className="stroke-none fill-foreground"
       >
-        {initialInput.width} m
+        {settings.main.buildingPolygon.width.replace('$$', initialInput.width.toString())}
       </text>
       <text
-        transform="matrix(0 -0.9397 0.9397 0.342 555.6812 259.0441)"
+        transform={`matrix(0 -0.9397 0.9397 0.342 555.6812 ${isHebrew ? 169.0441 : 259.0441})`}
         fontFamily="'Prosto'"
         fontSize="32.6256"
         className="stroke-none fill-foreground"
       >
-        {initialInput.stories} этажа
+        {settings.main.buildingPolygon.stories.twoStory}
       </text>
     </svg>
   )
 }
 
-const Building = () => {
+const Building = ({ settings }: BuildingProps) => {
   const stories = useCalcStore((s) => s.initialInput.stories)
   return (
     <div className={'w-full block justify-self-center select-none'}>
-      {stories === '1' && <OneStoryBuilding />}
-      {stories === '2' && <TwoStoryBuilding />}
+      {['1', '1pf'].includes(stories) && <OneStoryBuilding settings={settings} />}
+      {['2', '2pf'].includes(stories) && <TwoStoryBuilding settings={settings} />}
     </div>
   )
 }

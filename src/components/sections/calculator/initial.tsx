@@ -1,6 +1,6 @@
 'use client'
 import React, { useEffect } from 'react'
-import useCalcStore, { permissibleStoriesValues } from '@/stores/calc'
+import useCalcStore from '@/stores/calc'
 import {
   Form,
   FormControl,
@@ -21,7 +21,9 @@ import { z } from 'zod'
 import { useForm, Controller, Control } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Input } from '@/components/ui/input'
-import { storiesEnum } from '@/shared'
+import { permissibleStoriesValues, storiesEnum } from '@/shared'
+import { Calculator } from '@/payload-types'
+import { decode } from '@/shared'
 
 const schema = z.object({
   stories: storiesEnum,
@@ -35,7 +37,7 @@ type InitialInputValues = {
   length: number
 }
 
-const InitialInputs = () => {
+const InitialInputs = ({ settings }: { settings: Calculator }) => {
   const initialInput = useCalcStore((s) => s.initialInput)
   const updateInitialInput = useCalcStore((s) => s.updateInitialInput)
   const form = useForm<InitialInputValues>({
@@ -78,42 +80,56 @@ const InitialInputs = () => {
   return (
     <Form {...form}>
       <form className={'flex flex-col gap-4'}>
-        <StoriesField control={form.control} />
-        <NumberField name="width" label="Width" control={form.control} />
-        <NumberField name="length" label="Length" control={form.control} />
+        <StoriesField control={form.control} settings={settings} />
+        <NumberField name="width" label={settings.main.inputs.width} control={form.control} />
+        <NumberField name="length" label={settings.main.inputs.length} control={form.control} />
       </form>
     </Form>
   )
 }
 
-const StoriesField = ({ control }: { control: Control<InitialInputValues> }) => (
-  <FormField
-    render={({ field }) => (
-      <FormItem>
-        <FormLabel>Stories</FormLabel>
-        <FormControl>
-          <Select onValueChange={field.onChange} defaultValue={field.value.toString()}>
-            <SelectTrigger className="w-full">
-              <SelectValue placeholder="Stories" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                {permissibleStoriesValues.map((value) => (
-                  <SelectItem value={value.toString()} key={`${value}-stories`}>
-                    {value} stories
-                  </SelectItem>
-                ))}
-              </SelectGroup>
-            </SelectContent>
-          </Select>
-        </FormControl>
-        <FormMessage />
-      </FormItem>
-    )}
-    name={'stories'}
-    control={control}
-  />
-)
+const StoriesField = ({
+  control,
+  settings,
+}: {
+  control: Control<InitialInputValues>
+  settings: Calculator
+}) => {
+  return (
+    <FormField
+      render={({ field }) => (
+        <FormItem>
+          <FormLabel>{settings.main.inputs.stories.label}</FormLabel>
+          <FormControl>
+            <Select onValueChange={field.onChange} defaultValue={field.value.toString()}>
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Stories" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  {permissibleStoriesValues.map((value) => {
+                    return (
+                      <SelectItem
+                        value={value.toString()}
+                        key={`${value}-stories`}
+                        className={'dir-rtl'}
+                      >
+                        {settings.main.inputs.stories[decode[value]]}
+                      </SelectItem>
+                    )
+                  })}
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+          </FormControl>
+          <FormMessage />
+        </FormItem>
+      )}
+      name={'stories'}
+      control={control}
+    />
+  )
+}
 
 const NumberField = ({
   name,

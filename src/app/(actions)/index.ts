@@ -13,7 +13,7 @@ export const calculateBuildingMetrics = actionClient
   .schema(calculationSchema)
   .outputSchema(outputSchema)
   .action(async ({ parsedInput }) => {
-    if (!(parsedInput.stories in ['1', '2'])) throw new Error('Add parsing logic idk')
+    const cleanStories = parsedInput.stories.replace('pf', '')
 
     const twoStories: boolean = parsedInput.stories === '2'
     const settings = await fetchCalculatorSettings()
@@ -37,7 +37,7 @@ export const calculateBuildingMetrics = actionClient
     const dimensions = {
       width: parsedInput.width,
       length: parsedInput.length,
-      stories: parseInt(z.enum(['1', '2']).parse(parsedInput.stories)),
+      stories: cleanStories,
       totalParameterWeight: parsedParams.totalWeight,
       totalParameterHeatLoss: parsedParams.totalHeatLoss9,
       totalParameterHeatLoss39: parsedParams.totalHeatLoss39,
@@ -64,7 +64,7 @@ export const calculateBuildingMetrics = actionClient
         dimensions,
       ),
       heatingCosts: calculateMetric(settings.formulas.heatingCosts, dimensions),
-      cost: calculateMetric(settings.formulas.cost, dimensions),
+      cost: dimensions.totalParameterPrice,
       costPerSquareMeter: calculateMetric(settings.formulas.costPerSquareMeter, dimensions),
     } as z.infer<typeof outputSchema>
   })

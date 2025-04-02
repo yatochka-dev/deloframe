@@ -3,13 +3,15 @@ import { CategoryParameters } from '@/lib/fetchParameters'
 import { create } from 'zustand'
 import { persist, createJSONStorage } from 'zustand/middleware'
 import { Category } from '@/payload-types'
+import { storiesEnum } from '@/shared'
+import { z } from 'zod'
 
 // Store to hold calculations related configurations and operations
 
-export const permissibleStoriesValues = ['1', '2'] as const
+export type permissibleStoriesValues = z.infer<typeof storiesEnum>
 
 interface InitialInput {
-  stories: (typeof permissibleStoriesValues)[number]
+  stories: permissibleStoriesValues
   width: number
   length: number
 }

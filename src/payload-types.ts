@@ -94,11 +94,13 @@ export interface Config {
     settings: Setting;
     herosection: Herosection;
     calculatorSettings: CalculatorSetting;
+    calculator: Calculator;
   };
   globalsSelect: {
     settings: SettingsSelect<false> | SettingsSelect<true>;
     herosection: HerosectionSelect<false> | HerosectionSelect<true>;
     calculatorSettings: CalculatorSettingsSelect<false> | CalculatorSettingsSelect<true>;
+    calculator: CalculatorSelect<false> | CalculatorSelect<true>;
   };
   locale: 'he' | 'ru';
   user: User & {
@@ -185,37 +187,37 @@ export interface Parameter {
   pricePer: number;
   weight: number;
   heatLoss: number;
-  matrices?: {
-    amount?: {
-      oneStory?: string | null;
-      twoStory?: string | null;
-      oneStoryPF?: string | null;
-      twoStoryPF?: string | null;
+  matrices: {
+    amount: {
+      oneStory: string;
+      twoStory: string;
+      oneStoryPF: string;
+      twoStoryPF: string;
     };
-    price?: {
-      oneStory?: string | null;
-      twoStory?: string | null;
-      oneStoryPF?: string | null;
-      twoStoryPF?: string | null;
+    price: {
+      oneStory: string;
+      twoStory: string;
+      oneStoryPF: string;
+      twoStoryPF: string;
     };
-    weight?: {
-      oneStory?: string | null;
-      twoStory?: string | null;
-      oneStoryPF?: string | null;
-      twoStoryPF?: string | null;
+    weight: {
+      oneStory: string;
+      twoStory: string;
+      oneStoryPF: string;
+      twoStoryPF: string;
     };
-    heatLoss?: {
-      below9deg?: {
-        oneStory?: string | null;
-        twoStory?: string | null;
-        oneStoryPF?: string | null;
-        twoStoryPF?: string | null;
+    heatLoss: {
+      below9deg: {
+        oneStory: string;
+        twoStory: string;
+        oneStoryPF: string;
+        twoStoryPF: string;
       };
-      below39deg?: {
-        oneStory?: string | null;
-        twoStory?: string | null;
-        oneStoryPF?: string | null;
-        twoStoryPF?: string | null;
+      below39deg: {
+        oneStory: string;
+        twoStory: string;
+        oneStoryPF: string;
+        twoStoryPF: string;
       };
     };
   };
@@ -483,22 +485,73 @@ export interface Herosection {
  */
 export interface CalculatorSetting {
   id: number;
-  formulas?: {
-    buildingArea?: {
-      oneStory?: string | null;
-      twoStories?: string | null;
+  formulas: {
+    buildingArea: {
+      oneStory: string;
+      twoStories: string;
     };
-    usableArea?: {
-      oneStory?: string | null;
-      twoStories?: string | null;
+    usableArea: {
+      oneStory: string;
+      twoStories: string;
     };
-    weight?: string | null;
-    weightOnTheFoundation?: string | null;
-    houseHeatLoss?: string | null;
-    recommendedMinHeatingPower?: string | null;
-    heatingCosts?: string | null;
-    cost?: string | null;
-    costPerSquareMeter?: string | null;
+    weight: string;
+    weightOnTheFoundation: string;
+    houseHeatLoss: string;
+    recommendedMinHeatingPower: string;
+    heatingCosts: string;
+    cost: string;
+    costPerSquareMeter: string;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "calculator".
+ */
+export interface Calculator {
+  id: number;
+  main: {
+    inputs: {
+      length: string;
+      width: string;
+      stories: {
+        label: string;
+        oneStory: string;
+        twoStory: string;
+        oneStoryPF: string;
+        twoStoryPF: string;
+      };
+    };
+    buttons: {
+      advancedMode: string;
+      reset: string;
+    };
+    output: {
+      buildingArea: string;
+      usableArea: string;
+      buildingWeight: string;
+      weightOnTheFoundation: string;
+      heatLoss: string;
+      minHeatingPower: string;
+      heatingCosts: string;
+      price: string;
+      pricePerSq2: string;
+    };
+    buildingPolygon: {
+      /**
+       * $$ -- the width of the building in meters
+       */
+      width: string;
+      /**
+       * $$ -- the width of the building in meters
+       */
+      length: string;
+      stories: {
+        oneStory: string;
+        twoStory: string;
+      };
+    };
   };
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -557,6 +610,65 @@ export interface CalculatorSettingsSelect<T extends boolean = true> {
         heatingCosts?: T;
         cost?: T;
         costPerSquareMeter?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "calculator_select".
+ */
+export interface CalculatorSelect<T extends boolean = true> {
+  main?:
+    | T
+    | {
+        inputs?:
+          | T
+          | {
+              length?: T;
+              width?: T;
+              stories?:
+                | T
+                | {
+                    label?: T;
+                    oneStory?: T;
+                    twoStory?: T;
+                    oneStoryPF?: T;
+                    twoStoryPF?: T;
+                  };
+            };
+        buttons?:
+          | T
+          | {
+              advancedMode?: T;
+              reset?: T;
+            };
+        output?:
+          | T
+          | {
+              buildingArea?: T;
+              usableArea?: T;
+              buildingWeight?: T;
+              weightOnTheFoundation?: T;
+              heatLoss?: T;
+              minHeatingPower?: T;
+              heatingCosts?: T;
+              price?: T;
+              pricePerSq2?: T;
+            };
+        buildingPolygon?:
+          | T
+          | {
+              width?: T;
+              length?: T;
+              stories?:
+                | T
+                | {
+                    oneStory?: T;
+                    twoStory?: T;
+                  };
+            };
       };
   updatedAt?: T;
   createdAt?: T;

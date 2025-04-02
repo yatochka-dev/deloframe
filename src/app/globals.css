@@ -117,4 +117,8 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  .dir-rtl {
+    direction: ltr;
+  }
 }

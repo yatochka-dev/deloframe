@@ -7,6 +7,7 @@ export const createFormulaField = (name: string, label: string): Field => {
     label: label,
     type: 'text',
     defaultValue: '(0)',
+    required: true,
     validate: (value?: string | null) => {
       const formula = (value ?? '') as string
       if (!formula) {

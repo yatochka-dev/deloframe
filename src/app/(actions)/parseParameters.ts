@@ -1,6 +1,6 @@
 import type { Parameter } from '@/payload-types'
 import { z } from 'zod'
-import { storiesEnum } from '@/shared'
+import { decode, storiesEnum } from '@/shared'
 import { evaluate } from 'mathjs'
 import { Param } from '@/stores/calc'
 import { getPayload } from 'payload'
@@ -23,7 +23,7 @@ async function parseParameter(
     customAmount?: number
   },
 ): Promise<ParsedParameterData> {
-  const story = input.stories === '1' ? 'oneStory' : 'twoStory'
+  const story = decode[input.stories]
   const amount =
     input.customAmount ??
     evaluate(data.matrices.amount[story], {
