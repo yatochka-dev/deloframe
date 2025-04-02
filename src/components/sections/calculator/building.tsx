@@ -752,16 +752,12 @@ const TwoStoryBuilding = () => {
 
 const Building = () => {
   const stories = useCalcStore((s) => s.initialInput.stories)
-  switch (stories) {
-    case '1':
-      return <OneStoryBuilding />
-    case '2':
-      return <TwoStoryBuilding />
-    default:
-      // Placeholder for error handling
-      console.error(`Unsupported building type ${stories}`)
-      return null
-  }
+  return (
+    <div className={'w-full block justify-self-center'}>
+      {stories === '1' && <OneStoryBuilding />}
+      {stories === '2' && <TwoStoryBuilding />}
+    </div>
+  )
 }
 
 export default Building

@@ -24,7 +24,7 @@ export default async function CalculatorMain({ locale }: { locale: LocaleCode })
       className="min-h-screen h-full w-full flex justify-center px-5 mx-auto py-16"
     >
       <div className="bg-card w-full p-4 flex rounded-md shadow-lg">
-        <div className="w-1/2">
+        <div className="w-1/3">
           <InitialInputs />
           <Drawer>
             <DrawerTrigger>Open</DrawerTrigger>
@@ -50,7 +50,7 @@ export default async function CalculatorMain({ locale }: { locale: LocaleCode })
             </DrawerContent>
           </Drawer>
         </div>
-        <div className="w-1/2 max-w-1/2">
+        <div className="w-2/3 max-w-1/2 flex justify-center items-center">
           <Building />
         </div>
       </div>
