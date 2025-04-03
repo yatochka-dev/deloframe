@@ -296,7 +296,7 @@ const OneStoryBuilding = ({ settings }: BuildingProps) => {
         fontSize="32.6258"
         className="stroke-none fill-foreground "
       >
-        {settings.main.buildingPolygon.length.replace('$$', initialInput.width.toString())}
+        {settings.main.buildingPolygon.width.replace('$$', initialInput.width.toString())}
       </text>
       <text
         transform="matrix(0.883 0.3214 0 1 66.1347 392.183)"

@@ -28,6 +28,7 @@ export const CalculatorSectionSettings: GlobalConfig = {
               type: 'text',
               required: true,
               localized: true,
+              defaultValue: '0',
             },
             {
               name: 'width',
@@ -35,6 +36,7 @@ export const CalculatorSectionSettings: GlobalConfig = {
               type: 'text',
               required: true,
               localized: true,
+              defaultValue: '0',
             },
             {
               name: 'stories',
@@ -48,6 +50,7 @@ export const CalculatorSectionSettings: GlobalConfig = {
                   type: 'text',
                   required: true,
                   localized: true,
+                  defaultValue: 'Default Label',
                 },
                 {
                   name: 'oneStory',
@@ -55,6 +58,7 @@ export const CalculatorSectionSettings: GlobalConfig = {
                   type: 'text',
                   required: true,
                   localized: true,
+                  defaultValue: 'Default One Story',
                 },
                 {
                   name: 'twoStory',
@@ -62,6 +66,7 @@ export const CalculatorSectionSettings: GlobalConfig = {
                   type: 'text',
                   required: true,
                   localized: true,
+                  defaultValue: 'Default Two Story',
                 },
                 {
                   name: 'oneStoryPF',
@@ -69,6 +74,7 @@ export const CalculatorSectionSettings: GlobalConfig = {
                   type: 'text',
                   required: true,
                   localized: true,
+                  defaultValue: 'Default One Story PF',
                 },
                 {
                   name: 'twoStoryPF',
@@ -76,6 +82,7 @@ export const CalculatorSectionSettings: GlobalConfig = {
                   type: 'text',
                   required: true,
                   localized: true,
+                  defaultValue: 'Default Two Story PF',
                 },
               ],
             },
@@ -92,6 +99,7 @@ export const CalculatorSectionSettings: GlobalConfig = {
               type: 'text',
               required: true,
               localized: true,
+              defaultValue: 'Default Advanced Mode',
             },
             {
               name: 'reset',
@@ -99,6 +107,7 @@ export const CalculatorSectionSettings: GlobalConfig = {
               type: 'text',
               required: true,
               localized: true,
+              defaultValue: 'Default Reset',
             },
           ],
         },
@@ -113,6 +122,7 @@ export const CalculatorSectionSettings: GlobalConfig = {
               type: 'text',
               localized: true,
               required: true,
+              defaultValue: 'Default Building Area',
             },
             {
               name: 'usableArea',
@@ -120,6 +130,7 @@ export const CalculatorSectionSettings: GlobalConfig = {
               type: 'text',
               localized: true,
               required: true,
+              defaultValue: 'Default Usable Area',
             },
             {
               name: 'buildingWeight',
@@ -127,6 +138,7 @@ export const CalculatorSectionSettings: GlobalConfig = {
               type: 'text',
               localized: true,
               required: true,
+              defaultValue: 'Default Building Weight',
             },
             {
               name: 'weightOnTheFoundation',
@@ -134,6 +146,7 @@ export const CalculatorSectionSettings: GlobalConfig = {
               type: 'text',
               localized: true,
               required: true,
+              defaultValue: 'Default Weight on the Foundation',
             },
             {
               name: 'heatLoss',
@@ -141,6 +154,7 @@ export const CalculatorSectionSettings: GlobalConfig = {
               type: 'text',
               localized: true,
               required: true,
+              defaultValue: 'Default Heat Loss',
             },
             {
               name: 'minHeatingPower',
@@ -148,6 +162,7 @@ export const CalculatorSectionSettings: GlobalConfig = {
               type: 'text',
               localized: true,
               required: true,
+              defaultValue: 'Default Min Heating Power',
             },
             {
               name: 'heatingCosts',
@@ -155,6 +170,7 @@ export const CalculatorSectionSettings: GlobalConfig = {
               type: 'text',
               localized: true,
               required: true,
+              defaultValue: 'Default Heating Costs',
             },
             {
               name: 'price',
@@ -162,6 +178,7 @@ export const CalculatorSectionSettings: GlobalConfig = {
               type: 'text',
               localized: true,
               required: true,
+              defaultValue: 'Default Price',
             },
             {
               name: 'pricePerSq2',
@@ -169,6 +186,7 @@ export const CalculatorSectionSettings: GlobalConfig = {
               type: 'text',
               localized: true,
               required: true,
+              defaultValue: 'Default Price per sq^2',
             },
           ],
         },
@@ -186,6 +204,7 @@ export const CalculatorSectionSettings: GlobalConfig = {
               localized: true,
               validate: (value?: string | null) =>
                 value?.includes('$$') ? true : "Should include '$$'",
+              defaultValue: '0 $$',
             },
             {
               name: 'length',
@@ -196,6 +215,7 @@ export const CalculatorSectionSettings: GlobalConfig = {
               localized: true,
               validate: (value?: string | null) =>
                 value?.includes('$$') ? true : "Should include '$$'",
+              defaultValue: '0 $$',
             },
             {
               name: 'stories',
@@ -208,6 +228,7 @@ export const CalculatorSectionSettings: GlobalConfig = {
                   type: 'text',
                   localized: true,
                   required: true,
+                  defaultValue: 'Default One Story',
                 },
                 {
                   name: 'twoStory',
@@ -215,6 +236,7 @@ export const CalculatorSectionSettings: GlobalConfig = {
                   type: 'text',
                   localized: true,
                   required: true,
+                  defaultValue: 'Default Two Story',
                 },
               ],
             },
