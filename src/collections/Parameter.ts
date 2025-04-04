@@ -64,7 +64,7 @@ export const Parameters: CollectionConfig = {
           label: 'Amount',
           type: 'group',
           admin: {
-            description: descriptionGenerator('width', 'length'),
+            description: descriptionGenerator('width', 'length') as unknown as string,
           },
           fields: [
             createFormulaField('oneStory', 'One Story'),
@@ -84,7 +84,7 @@ export const Parameters: CollectionConfig = {
               'price',
               'weight',
               'heatLoss',
-            ),
+            ) as unknown as string,
           },
           type: 'group',
           fields: [
@@ -106,7 +106,7 @@ export const Parameters: CollectionConfig = {
               'price',
               'weight',
               'heatLoss',
-            ),
+            ) as unknown as string,
           },
           fields: [
             createFormulaField('oneStory', 'One Story'),
@@ -127,7 +127,7 @@ export const Parameters: CollectionConfig = {
               'price',
               'weight',
               'heatLoss',
-            ),
+            ) as unknown as string,
           },
           fields: [
             {
