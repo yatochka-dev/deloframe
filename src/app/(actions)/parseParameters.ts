@@ -29,11 +29,13 @@ async function parseParameter(
     evaluate(data.matrices.amount[story], {
       width: input.width,
       length: input.length,
+      height: input.length,
     })
   const symbols = {
     amount: amount,
     width: input.width,
     length: input.length,
+    height: input.length,
     price: data.pricePer,
     weight: data.weight,
     heatLoss: data.heatLoss,
