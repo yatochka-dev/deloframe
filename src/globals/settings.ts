@@ -4,7 +4,8 @@ import admin from '@/collections/access/admin'
 
 export const BaseSettings: GlobalConfig = {
   slug: 'settings',
-  label: 'Site Settings',
+  label: 'Настройки интерфейса',
+
   access: {
     read: all,
     update: admin,

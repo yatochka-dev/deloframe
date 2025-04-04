@@ -45,7 +45,7 @@ export default buildConfig({
     },
   }),
 
-  globals: [BaseSettings, HeroSectionSettings, CalculatorSettings, CalculatorSectionSettings],
+  globals: [BaseSettings, CalculatorSettings, HeroSectionSettings, CalculatorSectionSettings],
   sharp,
   localization: {
     // @ts-expect-error

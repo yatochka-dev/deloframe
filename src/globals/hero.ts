@@ -4,7 +4,7 @@ import admin from '@/collections/access/admin'
 
 export const HeroSectionSettings: GlobalConfig = {
   slug: 'herosection',
-  label: 'Hero Section',
+  label: 'Настройки главной секции',
   access: {
     read: all,
     update: admin,

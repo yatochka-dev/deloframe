@@ -4,7 +4,7 @@ import admin from '@/collections/access/admin'
 
 export const CalculatorSectionSettings: GlobalConfig = {
   slug: 'calculator',
-  label: 'Calculator Section',
+  label: 'Настройки секции калькулятора',
   access: {
     read: all,
     update: admin,

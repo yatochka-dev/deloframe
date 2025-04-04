@@ -92,14 +92,14 @@ export interface Config {
   };
   globals: {
     settings: Setting;
-    herosection: Herosection;
     calculatorSettings: CalculatorSetting;
+    herosection: Herosection;
     calculator: Calculator;
   };
   globalsSelect: {
     settings: SettingsSelect<false> | SettingsSelect<true>;
-    herosection: HerosectionSelect<false> | HerosectionSelect<true>;
     calculatorSettings: CalculatorSettingsSelect<false> | CalculatorSettingsSelect<true>;
+    herosection: HerosectionSelect<false> | HerosectionSelect<true>;
     calculator: CalculatorSelect<false> | CalculatorSelect<true>;
   };
   locale: 'he' | 'ru';
@@ -466,18 +466,6 @@ export interface Setting {
   createdAt?: string | null;
 }
 /**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "herosection".
- */
-export interface Herosection {
-  id: number;
-  title: string;
-  subtitle: string;
-  cta: string;
-  updatedAt?: string | null;
-  createdAt?: string | null;
-}
-/**
  * Stores the formulas for the calculator
  *
  * This interface was referenced by `Config`'s JSON-Schema
@@ -502,6 +490,18 @@ export interface CalculatorSetting {
     cost: string;
     costPerSquareMeter: string;
   };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "herosection".
+ */
+export interface Herosection {
+  id: number;
+  title: string;
+  subtitle: string;
+  cta: string;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -573,18 +573,6 @@ export interface SettingsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "herosection_select".
- */
-export interface HerosectionSelect<T extends boolean = true> {
-  title?: T;
-  subtitle?: T;
-  cta?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "calculatorSettings_select".
  */
 export interface CalculatorSettingsSelect<T extends boolean = true> {
@@ -611,6 +599,18 @@ export interface CalculatorSettingsSelect<T extends boolean = true> {
         cost?: T;
         costPerSquareMeter?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "herosection_select".
+ */
+export interface HerosectionSelect<T extends boolean = true> {
+  title?: T;
+  subtitle?: T;
+  cta?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

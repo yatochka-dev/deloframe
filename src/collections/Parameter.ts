@@ -3,6 +3,7 @@ import admin from '@/collections/access/admin'
 import all from '@/collections/access/all'
 import type { Category, Parameter } from '@/payload-types'
 import { createFormulaField } from '@/lib/fields'
+import descriptionGenerator from '@/lib/description'
 
 export type ParameterData = Parameter & {
   category: Category
@@ -62,6 +63,9 @@ export const Parameters: CollectionConfig = {
           name: 'amount',
           label: 'Amount',
           type: 'group',
+          admin: {
+            description: descriptionGenerator('width', 'length'),
+          },
           fields: [
             createFormulaField('oneStory', 'One Story'),
             createFormulaField('twoStory', 'Two Story'),
@@ -72,6 +76,16 @@ export const Parameters: CollectionConfig = {
         {
           name: 'price',
           label: 'Price',
+          admin: {
+            description: descriptionGenerator(
+              'amount',
+              'width',
+              'length',
+              'price',
+              'weight',
+              'heatLoss',
+            ),
+          },
           type: 'group',
           fields: [
             createFormulaField('oneStory', 'One Story'),
@@ -84,6 +98,16 @@ export const Parameters: CollectionConfig = {
           name: 'weight',
           label: 'Weight',
           type: 'group',
+          admin: {
+            description: descriptionGenerator(
+              'amount',
+              'width',
+              'length',
+              'price',
+              'weight',
+              'heatLoss',
+            ),
+          },
           fields: [
             createFormulaField('oneStory', 'One Story'),
             createFormulaField('twoStory', 'Two Story'),
@@ -95,6 +119,16 @@ export const Parameters: CollectionConfig = {
           name: 'heatLoss',
           label: 'Heat Loss',
           type: 'group',
+          admin: {
+            description: descriptionGenerator(
+              'amount',
+              'width',
+              'length',
+              'price',
+              'weight',
+              'heatLoss',
+            ),
+          },
           fields: [
             {
               name: 'below9deg',

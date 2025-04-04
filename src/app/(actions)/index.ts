@@ -64,7 +64,7 @@ export const calculateBuildingMetrics = actionClient
         dimensions,
       ),
       heatingCosts: calculateMetric(settings.formulas.heatingCosts, dimensions),
-      cost: dimensions.totalParameterPrice,
+      cost: calculateMetric(settings.formulas.cost, dimensions),
       costPerSquareMeter: calculateMetric(settings.formulas.costPerSquareMeter, dimensions),
     } as z.infer<typeof outputSchema>
   })
